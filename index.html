@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a10"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="GLOW UP">
+<link rel="manifest" href="manifest.json"><title>GLOW UP 2026 – Fitness App</title>
+<style>
+:root{--bg:#090a10;--panel:#141620;--panel2:#1b1e2b;--line:#292d3d;--text:#f4f5fb;--muted:#969bad;--accent:#a78bfa;--accent2:#75d6e8;--good:#78d6b0;--danger:#f28b9a;--warn:#f4c879}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#222039 0%,var(--bg) 55%);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:100px}
+header{position:sticky;top:0;z-index:5;padding:17px 18px 13px;background:#0b0c13ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{font-size:11px;letter-spacing:2.5px;color:var(--accent);font-weight:900}.head{display:flex;justify-content:space-between;align-items:center;margin-top:5px}h1{font-size:23px;margin:0;font-weight:850;letter-spacing:-.6px}.subhead{font-size:11px;color:var(--muted)}
+main{max-width:780px;margin:auto;padding:16px}.tab{display:none}.tab.active{display:block}
+.hero{padding:19px;border:1px solid #38334f;border-radius:22px;background:linear-gradient(140deg,#27213b,#171925 65%,#151822);margin-bottom:14px;box-shadow:0 12px 35px #0003}
+.hero small{font-weight:800;color:var(--accent2);letter-spacing:1.3px}.hero h2{font-size:25px;line-height:1.15;margin:9px 0}.hero p{color:#c0c3d1;line-height:1.5;margin:0}
+.card,.stat{background:linear-gradient(145deg,#171a26,#12141d);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:11px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat span{font-size:11px;color:var(--muted)}.stat b{display:block;font-size:22px;margin:5px 0}
+h3{font-size:17px;margin:19px 0 10px}h4{font-size:15px;margin:0 0 9px}.muted,.notice{color:var(--muted);font-size:12px;line-height:1.5}.notice{margin:9px 0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.btn{border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(135deg,#b6a0ff,#8c7be4);color:#11111a;font-weight:850;font-size:13px;cursor:pointer}.btn.secondary{background:#242638;color:#ded8ff;border:1px solid #41435c}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.btn.full{width:100%;margin-top:9px}
+input,textarea,select{width:100%;background:#0d0f17;color:var(--text);border:1px solid #373b4e;border-radius:11px;padding:11px;font:inherit}textarea{resize:vertical}label.field{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:9;display:grid;grid-template-columns:repeat(6,1fr);padding:8px 3px calc(8px + env(safe-area-inset-bottom));background:#10111af2;backdrop-filter:blur(18px);border-top:1px solid #303346}
+nav button{background:none;border:0;color:#85899c;font-size:9px;font-weight:650;padding:4px 0;min-width:0}nav button .ico{display:block;font-size:20px;line-height:25px;margin-bottom:2px}nav button.active{color:#c4b4ff}nav button.active .ico{filter:drop-shadow(0 0 7px #a78bfa88)}
+.pill{display:inline-block;border-radius:30px;padding:5px 9px;background:#29243d;color:#c7baff;font-size:10px;font-weight:750}.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--danger)}
+.progress{height:8px;border-radius:9px;background:#292d3d;overflow:hidden;margin:9px 0}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+.item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #292d3d;min-width:0;width:100%;}.item:last-child{border:0}.item input[type=checkbox],.item input[type=radio]{appearance:auto;-webkit-appearance:auto;flex:0 0 20px;width:20px!important;min-width:20px;height:20px;margin:0;padding:0;accent-color:var(--accent);cursor:pointer}.item .grow{flex:1 1 auto;min-width:0;overflow-wrap:anywhere;line-height:1.35}.item span{min-width:0}.right{margin-left:auto;text-align:right;font-size:12px;color:var(--muted)}
+details.card>div{width:100%;min-width:0;overflow:hidden}details.card .item{box-sizing:border-box}details.card .item input{max-width:20px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;margin:3px;border:1px solid #3a3e52;border-radius:20px;color:#d9d9e6;font-size:12px}
+.muscles{display:flex;justify-content:center;gap:18px;align-items:center;padding:8px}.bodyfigure{width:90px;height:150px;position:relative;display:flex;flex-direction:column;align-items:center;filter:drop-shadow(0 5px 8px #0008)}
+.headshape{width:24px;height:24px;border-radius:50%;background:#5a5e71}.torso{width:58px;height:62px;margin-top:5px;background:#555a70;clip-path:polygon(20% 0,80% 0,100% 28%,78% 100%,22% 100%,0 28%);position:relative}.arm{position:absolute;top:32px;width:15px;height:65px;border-radius:12px;background:#555a70}.arm.l{left:3px;transform:rotate(12deg)}.arm.r{right:3px;transform:rotate(-12deg)}.legs{display:flex;gap:9px;margin-top:-1px}.leg{height:54px;width:17px;border-radius:10px;background:#555a70}.hl{background:linear-gradient(160deg,#c5b4ff,#7e6de0)!important;box-shadow:0 0 10px #a78bfa99}
+.chatbubble{padding:11px 13px;border-radius:14px;background:#202335;margin:8px 0;white-space:pre-wrap;line-height:1.45}.chatbubble.me{background:#302b49;margin-left:22px}.chatbubble.ai{margin-right:22px}
+canvas{width:100%;height:170px;background:#0e1018;border-radius:12px}
+details.card{padding:13px 15px}
+details.card>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary:after{content:'＋';color:var(--accent);font-size:20px;font-weight:800}
+details.card[open]>summary:after{content:'−'}
+details.card[open]{border-color:#65558f}
+
+@media(max-width:649px){main{width:100%;min-width:0}#exercisePicker,details.card{max-width:100%;min-width:0}details.card>summary{min-width:0}details.card>summary .muted{white-space:nowrap}details.card .item{gap:12px}}
+@media(min-width:650px){main{padding:23px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}nav{left:50%;transform:translateX(-50%);max-width:780px;border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0}}
+
+.libraryrow{display:flex;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.libraryrow:last-child{border-bottom:0}.libraryrow .grow{min-width:0}
+.mini{font-size:12px;color:var(--muted)}.exercise-detail{margin-top:12px;padding:14px;background:var(--panel2);border:1px solid var(--line);border-radius:14px}
+.setrow{display:grid;grid-template-columns:38px 1fr 1fr auto;gap:7px;align-items:center;margin:8px 0}
+.setrow input{min-width:0;width:100%;padding:10px 7px}
+.timer{font-size:30px;font-weight:850;letter-spacing:1px;text-align:center;padding:12px;color:var(--accent2)}
+.pill.done{background:#214b40;color:#a5f0d2}
+@media(max-width:420px){.setrow{grid-template-columns:28px 1fr 1fr auto;gap:5px}.setrow input{font-size:13px;padding:9px 5px}}
+
+/* Version 22 – mobile ergonomics and iOS safe-area polish */
+html{min-width:320px;scroll-padding-top:90px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:320px;overflow-x:hidden;padding-bottom:calc(86px + env(safe-area-inset-bottom));overscroll-behavior-y:contain}
+button,.btn,nav button,summary{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button,.btn{min-height:42px}
+input,textarea,select{font-size:16px;line-height:1.35;min-height:44px}
+textarea{min-height:92px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+main{width:min(100%,812px);padding:clamp(12px,3.8vw,23px)}
+header{padding-top:calc(12px + env(safe-area-inset-top));}
+nav{padding:7px 4px calc(7px + env(safe-area-inset-bottom));}
+nav button{min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:clamp(9px,2.5vw,11px);line-height:1.15;white-space:nowrap}
+nav button .ico{font-size:20px;line-height:23px;margin:0}
+.card,.stat{min-width:0}
+.grid>*{min-width:0}
+img,canvas,svg,video{max-width:100%}
+table{max-width:100%;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.item button,.libraryrow button{flex:0 0 auto}
+@media(max-width:380px){
+ header{padding-left:13px;padding-right:13px}
+ h1{font-size:21px}
+ main{padding:11px}
+ .hero{padding:16px;border-radius:18px}
+ .hero h2{font-size:23px}
+ .card,.stat{padding:12px;border-radius:15px}
+ nav{grid-template-columns:repeat(6,minmax(0,1fr));padding-left:2px;padding-right:2px}
+ nav button{font-size:9px;letter-spacing:-.2px}
+ nav button .ico{font-size:19px}
+ .row{gap:7px}
+ .btn{padding:10px 11px}
+}
+@media(hover:none) and (pointer:coarse){
+ .btn,button{min-height:44px}
+ input[type=checkbox],input[type=radio]{min-width:22px;min-height:22px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Version 23 – active workout clarity */
+.workout-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 4px}
+.workout-summary>div{background:#10121c;border:1px solid #303448;border-radius:13px;padding:10px;min-width:0}
+.workout-summary span{display:block;font-size:9px;letter-spacing:.7px;color:var(--muted)}
+.workout-summary b{display:block;font-size:18px;font-variant-numeric:tabular-nums;margin-top:4px}
+.workout-progress{height:10px;margin:8px 0 12px}
+.exercise-progress{height:5px;margin:7px 0 10px}
+.exercise-detail>.row{align-items:center}
+.setrow .btn{padding:9px 10px;min-width:58px}
+@media(max-width:380px){.workout-summary{gap:5px}.workout-summary>div{padding:8px}.workout-summary b{font-size:16px}.setrow{grid-template-columns:22px minmax(0,1fr) minmax(0,1fr) auto}.setrow .btn{padding:8px 7px;min-width:48px;font-size:11px}}
+
+
+/* Version 24 – progress dashboard */
+.volume-row{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:9px;align-items:center;margin:9px 0}
+.volume-row b{font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.muscle-row{padding:9px 0;border-bottom:1px solid var(--line)}
+.muscle-row:last-child{border-bottom:0}
+#weightTrendSummary{padding:8px 0;color:var(--accent2);font-weight:700}
+@media(max-width:380px){.volume-row{grid-template-columns:48px minmax(0,1fr) auto;gap:6px}.volume-row b{font-size:10px}}
+
+
+/* Version 25 – nutrition analytics */
+.nutrition-trend{display:flex;flex-direction:column;gap:8px}
+.nutrition-day{padding:10px 11px;border:1px solid var(--line);border-radius:13px;background:#10121b}
+.nutrition-day.empty{display:flex;align-items:center;justify-content:space-between;opacity:.62}
+.nutrition-day-head,.nutrition-week-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.nutrition-day-head b,.nutrition-week-title b{font-size:12px}
+.nutrition-day-head span,.nutrition-week-title span{font-size:10px;color:var(--muted);text-align:right}
+.nutrition-day-empty{font-size:11px;color:var(--muted)}
+.nutrition-metric{display:grid;grid-template-columns:54px minmax(35px,1fr) auto;gap:8px;align-items:center;margin:5px 0}
+.nutrition-metric>span{font-size:10px;color:var(--muted)}
+.nutrition-metric>b{font-size:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.nutrition-track{height:7px;background:#292d3d;border-radius:10px;overflow:hidden}
+.nutrition-track i{display:block;height:100%;border-radius:10px}
+.nutrition-track .calories{background:linear-gradient(90deg,#e5a35e,#f4c879)}
+.nutrition-track .protein{background:linear-gradient(90deg,#7b91ed,#75d6e8)}
+.nutrition-week{border:1px solid var(--line);border-radius:14px;padding:11px;margin:8px 0;background:#10121b}
+.nutrition-week-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nutrition-week-grid>div{min-width:0;padding:9px;border-radius:10px;background:#191c29}
+.nutrition-week-grid span,.nutrition-week-grid small{display:block;font-size:10px;color:var(--muted)}
+.nutrition-week-grid b{display:block;font-size:14px;margin:4px 0;font-variant-numeric:tabular-nums}
+.nutrition-estimate{display:block;margin-top:7px;color:var(--muted)}
+#nutritionAnalyticsCard select{max-width:118px}
+@media(max-width:380px){
+ .nutrition-metric{grid-template-columns:46px minmax(25px,1fr) auto;gap:5px}
+ .nutrition-metric>b{font-size:9px}
+ .nutrition-day{padding:9px}
+ .nutrition-week-grid{gap:5px}
+ .nutrition-week-grid>div{padding:7px}
+ .nutrition-week-grid b{font-size:12px}
+}
+
+
+/* Version 26 – personal nutrition goal tracker */
+.nutrition-goals-panel{border:1px solid var(--line);border-radius:15px;padding:12px;margin:12px 0;background:#111421}
+.nutrition-goal-inputs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.nutrition-goal-inputs input{width:100%;margin-top:5px}
+.goal-progress-row{margin:12px 0}
+.goal-progress-row>.row{gap:8px;align-items:center}
+.goal-progress-row>.row b{font-size:12px}
+.goal-progress-row>.row span{font-size:11px;font-variant-numeric:tabular-nums;text-align:right}
+.goal-track{height:11px;margin:7px 0}
+.goal-progress-foot{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted)}
+.nutrition-week-goals{display:flex;flex-direction:column;gap:4px;margin-top:9px;padding-top:8px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}
+.nutrition-week-goals b{color:var(--text)}
+@media(max-width:380px){.nutrition-goals-panel{padding:10px}.goal-progress-foot{font-size:9px}}
+
+
+/* Version 28 – training balance and recovery guidance */
+.training-balance-card{margin:12px 0}
+.balance-intro{font-size:12px;color:var(--muted);line-height:1.5}
+.balance-group{padding:9px 0;border-bottom:1px solid var(--line)}
+.balance-group:last-child{border-bottom:0}
+.balance-group .row{gap:8px}
+.balance-bar{height:8px;margin:6px 0;background:#25293a;border-radius:999px;overflow:hidden}
+.balance-bar i{display:block;height:100%;background:linear-gradient(90deg,#75d6e8,#a78bfa);border-radius:999px}
+.balance-meta{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted)}
+.balance-suggest{border:1px solid var(--line);border-radius:13px;padding:12px;margin:10px 0;background:#111421}
+.balance-suggest b{display:block;margin-bottom:5px}
+.balance-status{font-size:11px;color:var(--muted)}
+
+/* Version 29 – exercise progression coach */
+.progression-hint{border-left:3px solid #9c8cff}
+#storageAlert[hidden]{display:none!important}
+</style></head><body>
+<header><div class="brand">GLOW UP · 2026</div><div class="head"><h1 id="topTitle">Dein Fortschritt</h1><span class="subhead">FITNESS APP</span></div></header>
+<div id="storageAlert" class="notice" role="status" aria-live="polite" hidden></div>
+<main>
+<section class="tab active" id="home">
+ <div class="hero"><small>DEIN WEG · DEIN TEMPO</small><h2>Stärker werden.<br>Wohlfühlen. Dranbleiben.</h2><p>Dein persönlicher Überblick für Training, Ernährung, Wasser und Fortschritt – flexibel statt starrer Wochenpläne.</p></div>
+ <div class="grid">
+  <div class="stat"><span>Training diese Woche</span><b id="homeTrain">0</b><span>Einheiten</span></div>
+  <div class="stat"><span>Protein heute</span><b id="homeProtein">0 g</b><span>Zielwert: 170 g</span></div>
+  <div class="stat"><span>Gewicht zuletzt</span><b id="homeWeight">—</b><span>kg</span></div>
+  <div class="stat" onclick="showTab('food')" style="cursor:pointer"><span>Wasser heute</span><b id="homeWater">0,0 l</b><span>Tippen zum Eintragen</span></div>
+ </div>
+ <h3>Wochenziel</h3><div class="card"><div class="row"><b>Deine Trainingseinheiten</b><span id="trainPct" class="pill">0 Einheiten</span></div><div class="progress"><i id="trainBar"></i></div><p class="notice">Kein fester Trainingskalender: Wähle Trainingstage nach deinem Alltag und deiner Regeneration.</p></div>
+ <h3>Wasser heute</h3><div class="card"><div class="row"><div><b id="waterHomeTotal">0,00 Liter</b><div class="muted">Dein täglicher Wasserstand</div></div><button class="btn" onclick="openWater()">+ Wasser</button></div><div class="grid" style="margin-top:10px"><button class="btn secondary" onclick="addWater(.25)">+ 1 Glas</button><button class="btn secondary" onclick="addWater(.5)">+ 0,5 Liter</button></div></div>
+</section>
+<section class="tab" id="training">
+ <div class="hero"><small>FLEXIBLER TRAININGSPLAN-BAUER</small><h2>Was trainierst du heute?</h2><p>Du entscheidest. Empfehlungen sind Orientierung und keine Verbote. Ein Training zählt im Zyklus erst nach Abschluss.</p><button class="btn full" onclick="startWorkoutBuilder()">＋ Ich trainiere</button></div>
+ <div class="card training-balance-card" id="trainingBalanceCard">
+  <div class="row"><h4>Trainingsbalance & Regeneration</h4><span class="pill">14-Tage-Blick</span></div>
+  <p class="balance-intro">Die App vergleicht deine dokumentierten abgeschlossenen Sätze pro Muskelgruppe und berücksichtigt, wann du diese zuletzt belastet hast. Die Empfehlung bleibt freiwillig – kein fester Wochenplan und keine automatische Trainingssperre.</p>
+  <div id="trainingBalanceSummary"><p class="notice">Deine Trainingsbalance wird aus deinen abgeschlossenen Einheiten berechnet.</p></div>
+ </div>
+ <div class="grid" style="margin:12px 0"><button class="btn secondary" onclick="toggleLibrary()">Übungsbibliothek öffnen</button><button class="btn secondary" onclick="showActiveWorkout()">Laufendes Training</button></div>
+ <div class="card" id="libraryPanel" style="display:none">
+  <div class="row"><h4>Übungsbibliothek</h4><button class="btn secondary" onclick="toggleLibrary(false)">Schließen</button></div>
+  <p class="notice"><span id="libraryCount">100 Übungen</span> · Suche auf Deutsch und Englisch. Die Übungskarten enthalten redaktionelle Trainingshinweise.</p>
+  <input id="librarySearch" placeholder="Übung, Muskel oder Equipment suchen …" oninput="renderLibrary()">
+  <div class="grid" style="margin-top:8px">
+   <select id="libraryGroup" onchange="renderLibrary()"><option value="">Alle Muskelgruppen</option></select>
+   <select id="libraryEquipment" onchange="renderLibrary()"><option value="">Alle Geräte</option><option>Langhantel</option><option>Kurzhanteln</option><option>Bank</option><option>Schrägbank</option><option>Widerstandsband</option><option>Klimmzugstange</option><option>Körpergewicht</option></select>
+  </div>
+  <div class="grid" style="margin-top:8px"><button class="btn secondary" onclick="libraryFilter='all';renderLibrary()">Alle</button><button class="btn secondary" onclick="libraryFilter='favorites';renderLibrary()">★ Favoriten</button><button class="btn secondary" onclick="libraryFilter='recent';renderLibrary()">Zuletzt verwendet</button></div>
+  <div class="card" style="margin-top:12px">
+   <h4>Eigene Übung erstellen</h4>
+   <p class="muted">Eigene Übungen werden nur lokal auf diesem Gerät gespeichert und sind im Backup enthalten.</p>
+   <input id="customExerciseName" placeholder="Übungsname">
+   <div class="grid"><select id="customExerciseGroup"><option>Brust</option><option>Rücken</option><option>Schultern</option><option>Bizeps</option><option>Trizeps</option><option>Unterarme</option><option>Beine</option><option>Bauch & Core</option><option>Ganzkörper</option></select><input id="customExerciseEquipment" placeholder="Equipment, z. B. Kurzhantel"></div>
+   <input id="customExerciseMain" placeholder="Hauptmuskel(n)">
+   <input id="customExerciseSecondary" placeholder="Hilfsmuskel(n), optional">
+   <textarea id="customExerciseSteps" rows="3" placeholder="Ausführung: Schritte mit Zeilenumbrüchen"></textarea>
+   <button class="btn full" onclick="createCustomExercise()">Eigene Übung speichern</button>
+  </div>
+  <div id="libraryResults"></div><div id="libraryDetail"></div>
+ </div>
+ <div class="card" id="builder" style="display:none"><div id="exercisePicker"></div></div>
+ <div class="card" id="builtPlan" style="display:none"><h4>Dein Trainingsplan</h4><div id="builtPlanBody"></div></div>
+ <div class="card" id="activeWorkoutCard" style="display:none"><div id="activeWorkout"></div></div>
+ <div class="card"><h4>Deine Trainingswoche</h4><div id="weekHistory" class="notice"></div></div>
+ <div class="card"><h4>Additional Activity</h4><p class="notice">Schritte, Fahrradfahren und andere Bewegung zusätzlich zum Krafttraining erfassen.</p><div id="activityList"></div><input id="activityText" placeholder="z. B. 3.000 Schritte oder 40 Min. E-Bike, 180 kcal"><button class="btn full" onclick="addActivity()">Aktivität hinzufügen</button></div>
+ <div class="card"><h4>Übungs-KI / Übungsrecherche</h4><p class="notice">Gib eine Muskelgruppe oder Übung ein. Die Suche öffnet aktuelle Web-Ergebnisse in einem neuen Tab. Eine direkt integrierte KI-Recherche benötigt eine Online-KI-Anbindung.</p><input id="exerciseQuery" placeholder="z. B. neue Bizepsübungen"><button class="btn full" onclick="exerciseSearch()">Übungen im Internet suchen ↗</button><div class="notice">Beispiele im Übungskatalog: Bayesian Curls, Spider Curls, Drag Curls, Military Press, Wrist Curls und Dead Hangs.</div></div>
+</section>
+<section class="tab" id="food">
+ <div class="hero"><small>ERNÄHRUNGSTAGEBUCH</small><h2>Was hast du gegessen?</h2><p>Trage Mahlzeiten manuell oder mit optionaler KI-Schätzung ein. KI-Nährwerte sind Näherungen; unbekannte Werte bleiben offen.</p></div><div class="card" id="weeklyCoachCard">
+  <div class="row"><div><h4>Dein intelligenter Wochen-Coach</h4><p class="muted">Training und Ernährung gemeinsam betrachten – ohne automatische Zieländerungen.</p></div><span class="pill">7-Tage-Check</span></div>
+  <p class="notice">Die lokale Wochenanalyse bleibt auf diesem Gerät. Eine optionale KI-Empfehlung wird erst nach deiner ausdrücklichen Aktion und nur mit aktiver KI-Einwilligung angefragt.</p>
+  <button class="btn full" type="button" onclick="runWeeklyCoach()">Meine Woche analysieren</button>
+  <div id="weeklyCoachResult" aria-live="polite"><p class="notice">Starte die Analyse, um Trainingsumfang, dokumentierte Ernährung und mögliche nächste Schritte zu sehen.</p></div>
+  <label class="checkline"><input id="weeklyCoachIncludeData" type="checkbox"> Diese Wochenzusammenfassung für die optionale KI-Empfehlung mitsenden</label>
+  <button class="btn secondary full" id="weeklyCoachAIButton" type="button" onclick="askAIWeeklyCoach()" style="display:none">Optionale KI-Empfehlung dazu holen</button>
+  <p id="weeklyCoachStatus" class="muted" aria-live="polite"></p>
+ </div>
+ <div class="card"><div class="row"><h4>GLOW KI-Coach</h4><span class="pill">KI-Assistent</span></div><div id="coachChat" style="min-height:52px"><div class="chatbubble ai">Frag mich zu Training, Regeneration oder Ernährung.</div></div><textarea id="coachPrompt" rows="2" placeholder="Deine Frage an den Coach …"></textarea><label class="checkline"><input id="coachIncludeData" type="checkbox"> Trainings- und Fortschrittsdaten für diese Frage mitsenden</label><button class="btn full" onclick="sendCoachMessage()">KI-Coach fragen</button></div>
+ <div class="grid"><div class="stat"><span>Kalorien heute</span><b id="calTotal">0</b><span>Orientierung ca. 2.550 kcal</span></div><div class="stat"><span>Protein heute</span><b id="proteinTotal">0 g</b><span>Orientierung ca. 170 g</span></div></div>
+ <div class="card" id="aiSettingsCard"><div class="row"><h4>KI-Verbindung</h4><span class="pill">OpenAI</span></div><p class="notice">Die KI läuft über deinen eigenen Server. Mahlzeit-, Rezept- und Coach-Texte werden nur bei deiner Einwilligung gesendet. Trainings- und Check-in-Daten gehen nur mit dem separaten Häkchen bei der Coach-Frage an den Dienst. Du kannst die Einwilligung jederzeit widerrufen. API-Schlüssel niemals hier oder in GitHub eintragen.</p><input id="aiEndpoint" type="url" placeholder="https://dein-worker.deinname.workers.dev"><label class="checkline"><input id="aiConsent" type="checkbox"> Ich willige ein, Mahlzeit-, Rezept- und Coach-Texte an den KI-Dienst zu senden.</label><div class="row"><button class="btn secondary" onclick="saveAISettings()">Verbindung speichern</button><button class="btn secondary" onclick="testAIConnection()">Verbindung testen</button><button class="btn secondary" onclick="revokeAIConsent()">Einwilligung widerrufen</button></div><p id="aiStatus" class="muted" aria-live="polite">Noch nicht verbunden.</p><p id="aiUsage" class="notice">KI-Verbrauch: Noch keine Anfrage erfasst.</p></div>
+ <div class="card"><h4>Mahlzeit per Chat hinzufügen</h4><div id="mealChat" style="min-height:65px"><div class="chatbubble ai">Schreib zum Beispiel: „Eine mittelgroße Portion Bolognese mit Nudeln, etwas mehr Fleisch.“</div></div><textarea id="mealText" rows="2" placeholder="Beschreibe deine Mahlzeit …"></textarea><button id="aiMealButton" class="btn full" onclick="sendMeal()">Mahlzeit einschätzen & hinzufügen</button><p class="notice">KI-Nährwerte sind Schätzungen. Wenn die KI nicht verfügbar ist, kannst du die Mahlzeit unten auch ohne KI speichern.</p><div class="grid"><label class="field">Kalorien (optional)<input id="manualMealKcal" type="number" min="0" step="1" inputmode="numeric" placeholder="Leer lassen = offen"></label><label class="field">Protein in g (optional)<input id="manualMealProtein" type="number" min="0" step="1" inputmode="numeric" placeholder="Leer lassen = offen"></label></div><button id="manualMealButton" type="button" class="btn secondary full" onclick="saveManualMeal()">Ohne KI speichern</button></div>
+ <div class="card"><div class="row"><h4>Heutige Mahlzeiten</h4><button class="btn secondary" onclick="resetMeals()">Tagesliste leeren</button></div><div id="meals"></div></div>
+ <div class="card" id="nutritionAnalyticsCard">
+  <div class="row"><div><h4>Ernährungsauswertung</h4><p class="muted">Dein Verlauf aus den gespeicherten Mahlzeiten.</p></div><select id="nutritionRange" aria-label="Zeitraum der Ernährungsauswertung" onchange="renderNutritionAnalytics()"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="all">Gesamt</option></select></div>
+  <div class="nutrition-goals-panel">
+   <div class="row"><div><h4>Deine Tagesziele</h4><p class="muted">Passe Kalorien und Protein an deinen aktuellen Plan an.</p></div><span class="pill">Lokal gespeichert</span></div>
+   <div class="nutrition-goal-inputs">
+    <label class="field">Kalorienziel (kcal)<input id="nutritionKcalGoal" type="number" min="500" max="8000" step="50" value="2550"></label>
+    <label class="field">Proteinziel (g)<input id="nutritionProteinGoal" type="number" min="20" max="400" step="5" value="170"></label>
+   </div>
+   <button class="btn secondary full" type="button" onclick="saveNutritionGoals()">Tagesziele speichern</button>
+   <div id="nutritionGoalStatus" class="muted" aria-live="polite">Die Startwerte sind Orientierung und können jederzeit geändert werden.</div>
+   <h4>Heute</h4><div id="nutritionTodayGoals"><p class="notice">Noch keine Mahlzeiten erfasst.</p></div>
+  </div>
+  <div class="grid" id="nutritionStats">
+   <div class="stat"><span>Ø Kalorien / erfasster Tag</span><b>—</b></div><div class="stat"><span>Ø Protein / erfasster Tag</span><b>—</b></div><div class="stat"><span>Erfasste Tage</span><b>—</b></div><div class="stat"><span>Mahlzeiten</span><b>—</b></div>
+  </div>
+  <h4>Protein- und Kalorienverlauf</h4>
+  <p class="muted">Tageswerte der letzten 14 Tage im gewählten Zeitraum. Tage ohne Einträge werden nicht als Null gewertet.</p>
+  <div id="nutritionDailyTrend" class="nutrition-trend"><p class="notice">Füge Mahlzeiten hinzu, um deinen Verlauf zu sehen.</p></div>
+  <h4>Wochenübersicht</h4>
+  <p class="muted">Wochen beginnen am Montag. Durchschnittswerte beziehen sich nur auf Tage mit gespeicherten Mahlzeiten.</p>
+  <div id="nutritionWeeklySummary" class="nutrition-weekly"><p class="notice">Noch keine Ernährungsdaten vorhanden.</p></div>
+  <p id="nutritionDataNote" class="notice">KI-Nährwerte sind Schätzungen. Die Auswertung übernimmt die gespeicherten Werte unverändert.</p>
+ </div>
+ <div class="card"><h4>Wasser-Chat</h4><div id="waterChat"><div class="chatbubble ai">Du kannst schreiben: „Ich habe eine 0,75-Liter-Flasche ausgetrunken.“</div></div><input id="waterText" placeholder="z. B. 0,75 Liter getrunken"><button class="btn full" onclick="waterChatSend()">Wasser eintragen</button><div class="grid"><button class="btn secondary" onclick="addWater(.25)">+ 1 Glas</button><button class="btn secondary" onclick="addWater(.5)">+ 0,5 Liter</button></div></div>
+</section>
+<section class="tab" id="recipes">
+ <div class="hero"><small>REZEPTASSISTENT</small><h2>Was möchtest du kochen?</h2><p>Rezeptwünsche, Budget und Zutaten eingeben. Rezepte kannst du speichern und direkt in den Einkauf übernehmen.</p></div>
+ <div class="card"><h4>Rezept nach Wunsch</h4><textarea id="recipePrompt" rows="3" placeholder="z. B. gesundes Gericht mit Reis und Hähnchen, kompletter Einkauf unter 8 €"></textarea><button class="btn full" onclick="makeRecipe()">Rezept vorschlagen</button><div id="recipeResult"></div></div>
+ <div class="card"><h4>Meine Vorräte</h4><p class="notice">Mengenangaben für wichtige Zutaten, Stückangaben für Gemüse.</p><div id="pantryInventory"></div><div class="grid"><input id="pantryName" placeholder="Lebensmittel"><input id="pantryAmount" placeholder="z. B. 200 g oder 1 Stück"></div><button class="btn full" onclick="addPantryItem()">+ Vorrat hinzufügen</button></div>
+ <div class="card"><h4>Aus dem Kühlschrank kochen</h4><p class="notice">Was hast du zu Hause? Wähle mehrere Zutaten aus.</p><div id="ingredientChecks" class="grid"></div><label class="field">Mahlzeit</label><select id="mealKind"><option>Beliebig</option><option>Frühstück</option><option>Mittagessen</option><option>Abendessen</option></select><label class="field">Wie viele Vorschläge?</label><select id="recipeCount"><option value="1">1 Rezept</option><option value="3" selected>3 Rezepte</option></select><button class="btn full" onclick="recipesFromPantry()">Rezepte aus Zutaten erstellen</button><div id="pantryResults"></div></div>
+ <div class="card"><h4>Gespeicherte Rezepte</h4><div id="savedRecipes"></div></div>
+</section>
+<section class="tab" id="shop">
+ <div class="hero"><small>SMARTER EINKAUF</small><h2>Dein Einkauf</h2><p>Rezepte übernehmen, Packungsgrößen berücksichtigen und gekaufte Produkte abhaken.</p></div>
+ <div class="card"><div class="row"><h4>Heutiger Einkauf</h4><button class="btn secondary" onclick="clearShop()">Leeren</button></div><div id="shopping"></div><div class="row"><b>Geschätzte Gesamtsumme</b><b id="shopTotal">0,00 €</b></div><button class="btn secondary full" onclick="addShop()">+ Artikel manuell hinzufügen</button></div>
+ <p class="notice">Packungsgrößen und Preise sind Richtwerte und können je nach Supermarkt abweichen. Zutaten aus gespeicherten Rezepten werden beim Hinzufügen zusammengeführt.</p>
+</section>
+<section class="tab" id="progress">
+ <div class="hero"><small>MESSEN STATT RATEN</small><h2>Deine Entwicklung</h2><p>Erfasse Gewicht und Bauchumfang und beobachte deinen persönlichen Verlauf.</p></div>
+ <div class="grid"><div class="stat"><span>Letztes Gewicht</span><b id="lastWeight">—</b></div><div class="stat"><span>Bauchumfang</span><b id="lastWaist">—</b></div></div>
+ <div class="card">
+  <div class="row"><h4>Trainingsanalyse</h4><select id="progressRange" onchange="renderProgressAnalytics()"><option value="7">7 Tage</option><option value="30" selected>30 Tage</option><option value="90">90 Tage</option><option value="all">Gesamt</option></select></div>
+  <div class="grid" id="trainingStats"></div>
+  <h4>Trainingsvolumen nach Woche</h4><div id="weeklyVolumeChart" class="notice">Dokumentiere Gewichte und Wiederholungen für dein Volumen.</div>
+  <h4>Arbeitssätze je Trainingstag</h4><div id="trainingLoadChart" class="notice">Schließe Trainingseinheiten ab, um deine Entwicklung zu sehen.</div>
+ </div>
+ <div class="card"><h4>Persönliche Bestleistungen</h4><p class="muted">Nur abgeschlossene Sätze werden berücksichtigt. Verglichen wird dieselbe Übungs-ID.</p><div id="personalRecords"></div></div>
+ <div class="card"><h4>Muskelgruppen-Entwicklung</h4><p class="muted">Vergleich der dokumentierten Haupt- und Hilfsmuskel-Arbeitssätze im gewählten Zeitraum. Das ist keine direkte Messung von Muskelwachstum oder Aktivierung.</p><div id="muscleAnalytics"></div></div>
+ <div class="card">
+  <h4>Datensicherung</h4>
+  <p class="notice">Deine Daten liegen aktuell nur in diesem Browser auf diesem Gerät. Erstelle regelmäßig ein Backup, besonders vor größeren Updates oder einem Gerätewechsel.</p>
+  <div class="grid"><button class="btn full" onclick="exportBackup()">Backup herunterladen</button><button class="btn secondary full" onclick="document.getElementById('backupFile').click()">Backup wiederherstellen</button></div>
+  <input id="backupFile" type="file" accept="application/json,.json" style="display:none" onchange="importBackupFile(this)">
+  <div id="backupStatus" class="muted" aria-live="polite">Änderungen werden lokal auf diesem Gerät gespeichert. Erstelle regelmäßig ein Backup.</div>
+ </div>
+ <div class="card"><h4>Check-in</h4><label class="field">Gewicht (kg)</label><input id="weightInput" type="number" step=".1" placeholder="z. B. 85,0"><label class="field">Bauchumfang (cm)</label><input id="waistInput" type="number" step=".5" placeholder="z. B. 90"><button class="btn full" onclick="saveCheckin()">Fortschritt speichern</button></div>
+ <div class="card"><h4>Gewichtsverlauf</h4><div id="weightTrendSummary" class="notice">Erfasse mehrere Check-ins, um Veränderungen zu vergleichen.</div><canvas id="chart" width="600" height="190"></canvas><div id="history" class="notice"></div></div>
+ <div class="card" id="challenge"><div class="row"><h4>8-Wochen-Challenge</h4><button class="btn ghost" onclick="confirmRemoveChallenge()">Entfernen</button></div><p class="notice">Eine optionale Challenge als Motivation. Du kannst sie jederzeit entfernen; deine übrigen Fortschrittsdaten bleiben erhalten.</p><div class="progress"><i id="challengeBar" style="width:0%"></i></div><label class="field">Aktuelle Challenge-Woche</label><select id="weekSelect" onchange="saveWeek()"><option value="1">Woche 1</option><option value="2">Woche 2</option><option value="3">Woche 3</option><option value="4">Woche 4</option><option value="5">Woche 5</option><option value="6">Woche 6</option><option value="7">Woche 7</option><option value="8">Woche 8</option></select><p class="notice" id="challengeLabel">Woche 1 von 8</p></div>
+ </section>
+</main>
+<nav aria-label="Hauptnavigation">
+<button type="button" aria-current="page" class="active" onclick="showTab('home',this)"><span class="ico">⌂</span>Start</button>
+<button type="button" onclick="showTab('training',this)"><span class="ico">🏋</span>Training</button>
+<button type="button" onclick="showTab('food',this)"><span class="ico">🍗</span>Ernährung</button>
+<button type="button" onclick="showTab('recipes',this)"><span class="ico">▤</span>Rezepte</button>
+<button type="button" onclick="showTab('shop',this)"><span class="ico">🛒</span>Einkauf</button>
+<button type="button" onclick="showTab('progress',this)"><span class="ico">📈</span>Fortschritt</button>
+</nav>
+<script src="./app-core.js"></script><script src="./ai-client.js"></script>
+<script>
+const KEY='glowup2026-v5';
+const today=()=>{let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const defaults={sessions:[],meals:[],mealHistory:[],waterDays:{},checks:[],week:1,challengeVisible:true,savedRecipes:[],shop:[],pantryItems:[],activities:[],trainingDaySlots:{},nutritionGoals:{kcal:2550,protein:170},exerciseLibraryPrefs:{favoriteIds:[],recent:[],customExercises:[]}};
+const profileLoad=GlowUpCore.readProfile(localStorage,KEY,defaults);
+let data=profileLoad.data;
+let profileRecovery=profileLoad.status==='recovery';
+let profileUnsaved=profileLoad.status==='unavailable';
+let profileRaw=profileLoad.raw;
+let profileWriteError=profileLoad.error||null;
+let pendingMealRecovery=null;
+let aiInFlight=new Set();
+let consentRevokedThisSession=false;
+data.sessions=data.sessions||[];data.meals=data.meals||[];data.mealHistory=data.mealHistory||[];data.nutritionGoals={kcal:2550,protein:170,...(data.nutritionGoals||{})};data.checks=data.checks||[];data.waterDays=data.waterDays||{};data.savedRecipes=data.savedRecipes||[];data.shop=data.shop||[];data.activities=data.activities||[];data.pantryItems=data.pantryItems||[];data.trainingDaySlots=data.trainingDaySlots||{};data.exerciseLibraryPrefs={favoriteIds:[],recent:[],customExercises:[],...(data.exerciseLibraryPrefs||{})};
+if(!data.trainingCycleStart)data.trainingCycleStart=Date.now();
+data.meals=data.meals.map(m=>({...m,date:m.date||today()}));
+// Migration: preserve legacy sessions as history, but reserve their original plan dates.
+data.sessions.forEach(s=>{if(s&&s.type!=='Rest Day'&&s.ts&&!data.trainingDaySlots[dateKey(s.ts)])data.trainingDaySlots[dateKey(s.ts)]={sessionId:s.id||null,reservedAt:s.ts,legacy:!s.status};});
+data.sessions.forEach((s,i)=>{if(s&&!s.id){s.id='legacy_'+String(s.ts||i)+'_'+i;}});
+
+function dateKey(ts){let d=new Date(ts);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function updateStorageAlert(){
+ const el=document.getElementById('storageAlert');if(!el)return;
+ if(profileRecovery){
+  el.hidden=false;
+  el.innerHTML='<b>Dein gespeichertes Profil ist beschädigt oder hat ein unbekanntes Format.</b> Die Originaldaten bleiben unverändert. Lade sie zuerst zur Wiederherstellung herunter oder stelle ein geprüftes Backup wieder her. Normale Änderungen werden bis dahin nicht gespeichert. <button type="button" class="btn secondary" onclick="downloadOriginalProfile()">Originaldaten herunterladen</button>';
+ }else if(profileUnsaved){
+  el.hidden=false;
+  const reason=pendingMealRecovery?`Die Mahlzeit „${esc(pendingMealRecovery.n)}“ ist noch nicht im Profil gespeichert.`:(profileWriteError?.name==='QuotaExceededError'?'Der Gerätespeicher ist voll.':'Der Gerätespeicher ist gerade nicht verfügbar.');
+  const retryLabel=pendingMealRecovery?'Mahlzeit erneut speichern':'Erneut speichern';
+  el.innerHTML=`<b>Änderungen noch nicht gespeichert.</b> ${reason} Du kannst den Zwischenstand exportieren oder erneut speichern. <button type="button" class="btn secondary" onclick="exportBackup()">Zwischenstand exportieren</button> <button type="button" class="btn secondary" onclick="retryProfileSave()">${retryLabel}</button>`;
+ }else el.hidden=true;
+}
+function persistProfile(nextData){
+ if(profileRecovery){updateStorageAlert();return false;}
+ const result=GlowUpCore.writeProfile(localStorage,KEY,nextData);
+ if(!result.ok){profileUnsaved=true;profileWriteError=result.error||null;updateStorageAlert();return false;}
+ data=nextData;
+ if(pendingMealRecovery&&Array.isArray(nextData.meals)&&nextData.meals.some(meal=>meal?.id===pendingMealRecovery.id))pendingMealRecovery=null;
+ profileUnsaved=!!pendingMealRecovery;profileWriteError=null;profileRaw=null;updateStorageAlert();return true;
+}
+function save(){const ok=persistProfile(data);render();return ok}
+function persist(){return persistProfile(data)}
+function retryProfileSave(){
+ if(profileRecovery)return false;
+ const pending=pendingMealRecovery;
+ const next=pending?GlowUpCore.appendPendingMeal(data,pending):data;
+ if(!persistProfile(next)){render();return false;}
+ if(pending&&!pendingMealRecovery){const textEl=document.getElementById('mealText');if(textEl&&textEl.value.trim()===pending.n){textEl.value='';document.getElementById('manualMealKcal').value='';document.getElementById('manualMealProtein').value='';}}
+ render();
+ if(pending&&!pendingMealRecovery)appendAIMessage('mealChat',`Die Mahlzeit „${pending.n}“ wurde erneut lokal gespeichert.`);
+ return true;
+}
+function downloadOriginalProfile(){
+ if(!profileRecovery||typeof profileRaw!=='string')return;
+ try{const blob=new Blob([profileRaw],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='glow-up-2026-originaldaten-'+today()+'.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}catch(e){alert('Die Originaldaten konnten nicht heruntergeladen werden.')}
+}
+function showTab(id,btn){refreshTrainingCycle();document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>{x.classList.remove('active');x.removeAttribute('aria-current')});const active=btn||[...document.querySelectorAll('nav button')].find(x=>x.getAttribute('onclick').includes(id));if(active){active.classList.add('active');active.setAttribute('aria-current','page')}document.getElementById('topTitle').textContent=({home:'Dein Fortschritt',training:'Dein Training',food:'Deine Ernährung',recipes:'Deine Rezepte',shop:'Dein Einkauf',progress:'Deine Entwicklung'})[id];if(id==='progress'){drawChart();renderProgressAnalytics()}}
+function waterValue(){return Number(data.waterDays[today()]||0)}
+function addWater(l){data.waterDays[today()]=Math.max(0,waterValue()+l);save();if(document.getElementById('waterChat'))document.getElementById('waterChat').innerHTML+=`<div class="chatbubble ai">${l.toLocaleString('de-DE')} Liter hinzugefügt. Dein heutiger Wasserstand: ${waterValue().toFixed(2).replace('.',',')} l.</div>`}
+function openWater(){showTab('food');document.getElementById('waterText').focus()}
+function waterChatSend(){let el=document.getElementById('waterText'),s=el.value.trim();if(!s)return;let m=s.match(/(\d+(?:[.,]\d+)?)\s*(?:liter|l\b)/i);if(!m){document.getElementById('waterChat').innerHTML+=`<div class="chatbubble ai">Wie viele Liter oder Milliliter waren es ungefähr?</div>`;return}let l=Number(m[1].replace(',','.'));data.waterDays[today()]=Math.max(0,waterValue()+l);el.value='';save();document.getElementById('waterChat').innerHTML+=`<div class="chatbubble me">${esc(s)}</div><div class="chatbubble ai">${l} Liter hinzugefügt! Dein heutiger Wasserstand: ${waterValue().toFixed(2).replace('.',',')} l.</div>`}
+
+const AI_CONFIG_KEY='glowup2026-ai-config-v1';
+function getAIConfig(){try{return JSON.parse(localStorage.getItem(AI_CONFIG_KEY)||'{}')}catch(e){return {}}}
+function saveAISettings(){const endpoint=document.getElementById('aiEndpoint').value.trim().replace(/\/+$/,'');if(endpoint&&!/^https:\/\/[a-z0-9.-]+(?::\d+)?(?:\/[a-z0-9._~!$&'()*+,;=:@%/-]*)?$/i.test(endpoint))return alert('Bitte eine gültige HTTPS-Worker-URL eingeben.');const consent=document.getElementById('aiConsent').checked;try{localStorage.setItem(AI_CONFIG_KEY,JSON.stringify({endpoint,consent}));consentRevokedThisSession=false;document.getElementById('aiStatus').textContent=endpoint?(consent?'URL gespeichert, Einwilligung aktiv.':'URL gespeichert, Einwilligung fehlt.'):'Keine KI-URL gespeichert.'}catch(e){document.getElementById('aiStatus').textContent='KI-Einstellungen konnten nicht gespeichert werden. Prüfe den freien Gerätespeicher.'}}
+function revokeAIConsent(){const cfg=getAIConfig();consentRevokedThisSession=true;document.getElementById('aiConsent').checked=false;try{localStorage.setItem(AI_CONFIG_KEY,JSON.stringify({endpoint:cfg.endpoint||'',consent:false}));document.getElementById('aiStatus').textContent='Einwilligung widerrufen. Es werden keine neuen KI-Anfragen gesendet.'}catch(e){document.getElementById('aiStatus').textContent='Einwilligung für diese Sitzung widerrufen; die Einstellung konnte wegen des Gerätespeichers nicht dauerhaft gespeichert werden.'}}
+function aiConsentGiven(){const c=getAIConfig();return !consentRevokedThisSession&&!!(c.endpoint&&c.consent)}
+const AI_USAGE_KEY='glowup2026-ai-usage-v1';
+function getAIUsage(){try{return JSON.parse(localStorage.getItem(AI_USAGE_KEY)||'{\"requests\":0,\"inputTokens\":0,\"outputTokens\":0,\"byDay\":{}}')}catch(e){return {requests:0,inputTokens:0,outputTokens:0,byDay:{}}}}
+function renderAIUsage(){const el=document.getElementById('aiUsage');if(!el)return;const u=getAIUsage(),d=u.byDay?.[today()]||{requests:0,inputTokens:0,outputTokens:0};el.textContent=`KI-Verbrauch heute: ${d.requests} Anfrage(n) · ${d.inputTokens+d.outputTokens} Tokens. Insgesamt: ${u.requests} Anfrage(n) · ${u.inputTokens+u.outputTokens} Tokens. Dies sind Verbrauchsdaten, keine Euro-Abrechnung.`}
+function recordAIUsage(usage){const u=getAIUsage(),day=today(),d=u.byDay[day]||{requests:0,inputTokens:0,outputTokens:0};const input=Math.max(0,Math.floor(Number(usage?.input_tokens)||0)),output=Math.max(0,Math.floor(Number(usage?.output_tokens)||0));u.requests++;u.inputTokens+=input;u.outputTokens+=output;d.requests++;d.inputTokens+=input;d.outputTokens+=output;u.byDay[day]=d;const keys=Object.keys(u.byDay).sort();while(keys.length>30)delete u.byDay[keys.shift()];localStorage.setItem(AI_USAGE_KEY,JSON.stringify(u));renderAIUsage()}
+function appendAIMessage(target,text,kind='ai'){const el=document.getElementById(target);if(!el)return;const d=document.createElement('div');d.className='chatbubble '+kind;d.textContent=text;el.appendChild(d);el.scrollTop=el.scrollHeight}
+function showAIStatus(message){const el=document.getElementById('aiStatus');if(el)el.textContent=message}
+async function callGlowAI(action,payload){
+ const cfg=getAIConfig();if(!cfg.endpoint)throw new Error('KI-Server-URL fehlt.');if(!cfg.consent)throw new Error('Einwilligung fehlt.');
+ if(aiInFlight.has(action))throw new Error('Für diese Aktion läuft bereits eine KI-Anfrage.');
+ aiInFlight.add(action);
+ try{
+  const response=await GlowUpAIClient.request({endpoint:cfg.endpoint,action,payload,fetchImpl:fetch,onUsage:recordAIUsage,timeoutMs:30000});
+  if(response.usageWarning)showAIStatus(response.usageWarning);
+  return response.result;
+ }catch(error){if(error.usageWarning)showAIStatus(error.usageWarning);throw error}
+ finally{aiInFlight.delete(action)}
+}
+function normalizeAIRecipe(r){if(!r||typeof r!=='object')throw new Error('Rezeptdaten fehlen.');const ingredients=(Array.isArray(r.ingredients)?r.ingredients:[]).map(x=>({n:String(x.name||'').slice(0,100),need:String(x.amount||'Menge offen').slice(0,80),buy:String(x.buy||'bei Bedarf prüfen').slice(0,100),price:null})).filter(x=>x.n);const steps=(Array.isArray(r.steps)?r.steps:[]).map(x=>String(x).slice(0,500)).filter(Boolean).slice(0,12);if(!r.name||!ingredients.length||!steps.length)throw new Error('Rezept unvollständig.');const nullableNumber=v=>v===null||v===undefined||v===''?null:(Number.isFinite(Number(v))?Math.round(Number(v)):null);return {name:String(r.name).slice(0,120),ingredients,steps,kcal:nullableNumber(r.kcal),protein:nullableNumber(r.protein_g),servings:Math.max(1,Math.min(12,Number(r.servings)||1)),nutritionNote:String(r.nutrition_note||'KI-Schätzung, nicht verifiziert.')}}
+async function testAIConnection(){const status=document.getElementById('aiStatus');status.textContent='Prüfe Verbindung …';try{const r=await callGlowAI('health',{});status.textContent='Verbunden: '+(r.status||'OK')}catch(e){status.textContent='Verbindung fehlgeschlagen: '+e.message}}
+async function sendCoachMessage(){const el=document.getElementById('coachPrompt'),q=el.value.trim();if(!q)return;if(!aiConsentGiven())return appendAIMessage('coachChat','Bitte zuerst KI-Verbindung und Einwilligung aktivieren.');appendAIMessage('coachChat',q,'me');el.disabled=true;const context=document.getElementById('coachIncludeData').checked?{completedSessions:(data.sessions||[]).filter(s=>s.status==='completed').slice(-10).map(s=>({date:s.date||s.completedAt,exercises:(s.exerciseItems||[]).map(e=>({name:e.nameSnapshot,sets:(e.sets||[]).filter(x=>x.completed)}))})),latestCheckin:(data.checks||[]).slice(-1)[0]||null,todayMeals:(data.meals||[]).filter(m=>m.date===today()).map(m=>({name:m.n,kcal:m.c,protein_g:m.p}))}:null;try{const r=await callGlowAI('coach',{message:q,context});appendAIMessage('coachChat',String(r.answer||'Keine Antwort erhalten.'));el.value=''}catch(e){appendAIMessage('coachChat','KI-Coach nicht erreichbar: '+e.message)}finally{el.disabled=false}}
+async function sendMeal(){
+ const el=document.getElementById('mealText'),s=el.value.trim();if(!s)return;
+ if(pendingMealRecovery)return appendAIMessage('mealChat','Speichere oder exportiere zuerst die noch offene Mahlzeit.');
+ if(!aiConsentGiven())return appendAIMessage('mealChat','Bitte aktiviere zuerst die Einwilligung in der KI-Verbindung.');
+ appendAIMessage('mealChat',s,'me');el.disabled=true;
+ try{
+  const result=await callGlowAI('meal',{text:s});
+  if(result.needs_clarification){appendAIMessage('mealChat',result.question||'Welche Portionsgröße und Zutaten waren enthalten?');return}
+  const kcal=result.kcal===null||result.kcal===undefined?null:Number(result.kcal),protein=result.protein_g===null||result.protein_g===undefined?null:Number(result.protein_g);
+  if((kcal!==null&&(!Number.isFinite(kcal)||kcal<0))||(protein!==null&&(!Number.isFinite(protein)||protein<0)))throw new Error('Die Nährwerte der KI-Antwort sind ungültig.');
+  const meal=GlowUpCore.createMeal({id:'meal_'+Date.now(),text:s,kcal,protein,date:today(),source:'ai',confidence:result.confidence,notes:result.notes});
+  const next=GlowUpCore.appendMeal(data,meal);
+  if(!persistProfile(next)){if(!profileRecovery){pendingMealRecovery=meal;profileUnsaved=true;updateStorageAlert();}appendAIMessage('mealChat',profileRecovery?'Das Profil ist im Wiederherstellungsmodus. Die Mahlzeit wurde nicht gespeichert.':'Speichern fehlgeschlagen. Die Mahlzeit bleibt im Feld; du kannst erneut speichern oder den Zwischenstand exportieren.');return}
+  render();el.value='';
+  const kcalText=meal.c===null?'Kalorien offen':`ca. ${meal.c} kcal`,proteinText=meal.p===null?'Protein offen':`ca. ${meal.p} g Protein`;
+  appendAIMessage('mealChat',`KI-Schätzung gespeichert: ${kcalText} · ${proteinText}. ${result.notes||''} Bitte als Näherungswert verstehen.`);
+ }catch(e){appendAIMessage('mealChat','KI konnte nicht antworten: '+e.message+' Mahlzeit wurde nicht gespeichert.')}
+ finally{el.disabled=false}
+}
+
+function saveManualMeal(){
+ const textEl=document.getElementById('mealText'),kcalEl=document.getElementById('manualMealKcal'),proteinEl=document.getElementById('manualMealProtein');
+ if(pendingMealRecovery){appendAIMessage('mealChat','Speichere oder exportiere zuerst die noch offene Mahlzeit.');return false}
+ const text=textEl.value.trim();if(!text){appendAIMessage('mealChat','Bitte beschreibe zuerst die Mahlzeit.');textEl.focus();return false}
+ const parseOptional=(el,label)=>{const raw=el.value.trim();if(!raw)return {ok:true,value:null};const value=Number(raw);return Number.isFinite(value)&&value>=0?{ok:true,value}:{ok:false,label}};
+ const kcal=parseOptional(kcalEl,'Kalorien'),protein=parseOptional(proteinEl,'Protein');
+ if(!kcal.ok||!protein.ok){appendAIMessage('mealChat','Bitte gib Kalorien und Protein als nicht-negative Zahlen ein oder lass das Feld leer.');return false}
+ const meal=GlowUpCore.createMeal({id:'meal_'+Date.now(),text,kcal:kcal.value,protein:protein.value,date:today(),source:'manual'});
+ const next=GlowUpCore.appendMeal(data,meal);
+ if(!persistProfile(next)){if(!profileRecovery){pendingMealRecovery=meal;profileUnsaved=true;updateStorageAlert();}appendAIMessage('mealChat',profileRecovery?'Das Profil ist im Wiederherstellungsmodus. Die Mahlzeit wurde nicht gespeichert.':'Speichern fehlgeschlagen. Die Mahlzeit bleibt im Feld; du kannst erneut speichern oder den Zwischenstand exportieren.');return false}
+ render();textEl.value='';kcalEl.value='';proteinEl.value='';
+ const kcalText=meal.c===null?'Kalorien offen':`${meal.c} kcal`,proteinText=meal.p===null?'Protein offen':`${meal.p} g Protein`;
+ appendAIMessage('mealChat',`Manuell gespeichert: ${kcalText} · ${proteinText}.`);return true;
+}
+
+
+function nutritionDateFromKey(key){
+ const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(key||''));
+ if(!m)return null;
+ const d=new Date(Number(m[1]),Number(m[2])-1,Number(m[3]));
+ if(d.getFullYear()!==Number(m[1])||d.getMonth()!==Number(m[2])-1||d.getDate()!==Number(m[3]))return null;
+ d.setHours(0,0,0,0);return d;
+}
+function nutritionKeyFromDate(d){
+ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function nutritionWeekStart(d){
+ const x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-(x.getDay()+6)%7);return x;
+}
+function aggregateNutrition(meals,rangeDays,nowDate=new Date()){
+ const byDay=new Map();
+ (Array.isArray(meals)?meals:[]).forEach(m=>{
+  const d=nutritionDateFromKey(m?.date);if(!d)return;
+  const key=nutritionKeyFromDate(d);
+  let v=byDay.get(key);
+  if(!v)v={dateKey:key,date:d,kcal:0,protein:0,kcalCount:0,proteinCount:0,unknownKcal:0,unknownProtein:0,meals:0,estimated:0};
+  const kcal=Number(m.c),protein=Number(m.p);
+  v.meals++;
+  if(m.estimate||m.estimateMethod==='ai')v.estimated++;
+  if(m.c!==null&&m.c!==undefined&&m.c!==''&&Number.isFinite(kcal)&&kcal>=0){v.kcal+=kcal;v.kcalCount++;}else v.unknownKcal++;
+  if(m.p!==null&&m.p!==undefined&&m.p!==''&&Number.isFinite(protein)&&protein>=0){v.protein+=protein;v.proteinCount++;}else v.unknownProtein++;
+  byDay.set(key,v);
+ });
+ const todayDate=new Date(nowDate);todayDate.setHours(0,0,0,0);
+ const start=rangeDays?new Date(todayDate.getTime()-(rangeDays-1)*86400000):
+  (byDay.size?new Date(Math.min(...[...byDay.values()].map(x=>x.date.getTime()))):todayDate);
+ start.setHours(0,0,0,0);
+ const filtered=[...byDay.values()].filter(v=>v.date>=start&&v.date<=todayDate).sort((a,b)=>a.date-b.date);
+ const kcalDays=filtered.filter(x=>x.kcalCount>0),proteinDays=filtered.filter(x=>x.proteinCount>0);
+ const sumKcal=kcalDays.reduce((a,x)=>a+x.kcal,0),sumProtein=proteinDays.reduce((a,x)=>a+x.protein,0);
+ const daily=[];
+ const firstChartDay=new Date(Math.max(start.getTime(),todayDate.getTime()-13*86400000));
+ for(let d=new Date(firstChartDay);d<=todayDate;d.setDate(d.getDate()+1)){
+  const key=nutritionKeyFromDate(d),v=byDay.get(key);
+  if(d<start)continue;
+  daily.push(v?{...v}:{dateKey:key,date:new Date(d),kcal:0,protein:0,kcalCount:0,proteinCount:0,unknownKcal:0,unknownProtein:0,meals:0,estimated:0});
+ }
+ const weeklyMap=new Map();
+ filtered.forEach(v=>{
+  const ws=nutritionWeekStart(v.date),key=nutritionKeyFromDate(ws);
+  let w=weeklyMap.get(key);
+  if(!w)w={weekKey:key,weekStart:ws,kcal:0,protein:0,kcalDays:0,proteinDays:0,unknownKcal:0,unknownProtein:0,kcalGoalDays:0,proteinGoalDays:0,loggedDays:0,meals:0,estimated:0};
+  if(v.kcalCount){w.kcal+=v.kcal;w.kcalDays++;}
+  if(v.proteinCount){w.protein+=v.protein;w.proteinDays++;}
+  w.unknownKcal+=v.unknownKcal;w.unknownProtein+=v.unknownProtein;w.loggedDays++;w.meals+=v.meals;w.estimated+=v.estimated;weeklyMap.set(key,w);
+ });
+ const weeks=[...weeklyMap.values()].sort((a,b)=>a.weekStart-b.weekStart).slice(-8);
+ return {
+  from:nutritionKeyFromDate(start),to:nutritionKeyFromDate(todayDate),
+  daysTracked:new Set([...kcalDays.map(x=>x.dateKey),...proteinDays.map(x=>x.dateKey)]).size,
+  mealCount:filtered.reduce((a,x)=>a+x.meals,0),
+  unknownKcal:filtered.reduce((sum,x)=>sum+x.unknownKcal,0),unknownProtein:filtered.reduce((sum,x)=>sum+x.unknownProtein,0),
+  averageKcal:kcalDays.length?sumKcal/kcalDays.length:null,
+  averageProtein:proteinDays.length?sumProtein/proteinDays.length:null,
+  totalKcal:sumKcal,totalProtein:sumProtein,kcalDays:kcalDays.length,proteinDays:proteinDays.length,
+  estimatedMeals:filtered.reduce((a,x)=>a+x.estimated,0),
+  daily,weeks
+ };
+}
+function nutritionFormat(value,digits=0){
+ if(value===null||value===undefined||!Number.isFinite(Number(value)))return '—';
+ return Number(value).toLocaleString('de-DE',{minimumFractionDigits:digits,maximumFractionDigits:digits});
+}
+
+function saveNutritionGoals(){
+ const kcal=Number(document.getElementById('nutritionKcalGoal')?.value);
+ const protein=Number(document.getElementById('nutritionProteinGoal')?.value);
+ if(!Number.isFinite(kcal)||kcal<500||kcal>8000||!Number.isFinite(protein)||protein<20||protein>400){
+  alert('Bitte ein Kalorienziel zwischen 500 und 8.000 kcal und ein Proteinziel zwischen 20 und 400 g eingeben.');return;
+ }
+ data.nutritionGoals={kcal:Math.round(kcal),protein:Math.round(protein)};
+ save();
+ const status=document.getElementById('nutritionGoalStatus');
+ if(status)status.textContent='Deine Tagesziele wurden gespeichert und werden in die Wochenübersicht übernommen.';
+}
+function renderNutritionGoalProgress(){
+ const goals=data.nutritionGoals||{kcal:2550,protein:170};
+ const kcalGoal=Number(goals.kcal)||2550,proteinGoal=Number(goals.protein)||170;
+ const kcalInput=document.getElementById('nutritionKcalGoal'),proteinInput=document.getElementById('nutritionProteinGoal');
+ if(kcalInput&&document.activeElement!==kcalInput)kcalInput.value=kcalGoal;
+ if(proteinInput&&document.activeElement!==proteinInput)proteinInput.value=proteinGoal;
+ const el=document.getElementById('nutritionTodayGoals');if(!el)return;
+ const todayMeals=data.meals.filter(m=>m.date===today());
+ const kcalRows=todayMeals.filter(m=>m.c!==null&&m.c!==undefined&&m.c!==''&&Number.isFinite(Number(m.c))&&Number(m.c)>=0);
+ const proteinRows=todayMeals.filter(m=>m.p!==null&&m.p!==undefined&&m.p!==''&&Number.isFinite(Number(m.p))&&Number(m.p)>=0);
+ const kcal=kcalRows.reduce((s,m)=>s+Number(m.c),0),protein=proteinRows.reduce((s,m)=>s+Number(m.p),0);
+ const bar=(label,value,target,unit,cls,knownCount)=>{
+  const pct=knownCount&&target>0?value/target*100:0,shown=Math.min(100,Math.max(0,pct));
+  const remain=Math.max(0,target-value),over=Math.max(0,value-target);
+  const status=!todayMeals.length?'Noch keine Einträge':!knownCount?'Nährwerte offen':over>0?`${nutritionFormat(over)} ${unit} über Ziel`:`Noch ${nutritionFormat(remain)} ${unit}`;
+  const shownValue=knownCount?nutritionFormat(value):'—';
+  return `<div class="goal-progress-row"><div class="row"><b>${label}</b><span>${shownValue} / ${nutritionFormat(target)} ${unit}</span></div><div class="nutrition-track goal-track"><i class="${cls}" style="width:${shown}%"></i></div><div class="goal-progress-foot"><span>${knownCount?nutritionFormat(pct)+' %':'—'} erreicht</span><span>${status}</span></div></div>`;
+ };
+ const unknownKcal=todayMeals.length-kcalRows.length,unknownProtein=todayMeals.length-proteinRows.length;
+ el.innerHTML=bar('Kalorien',kcal,kcalGoal,'kcal','calories',kcalRows.length)+bar('Protein',protein,proteinGoal,'g','protein',proteinRows.length)+
+  `<p class="muted">${todayMeals.length} gespeicherte Mahlzeit${todayMeals.length===1?'':'en'} · ${unknownKcal||unknownProtein?`${unknownKcal} Kalorien- und ${unknownProtein} Proteinwerte offen · `:''}${todayMeals.filter(m=>m.estimate||m.estimateMethod==='ai').length} KI-Schätzung${todayMeals.filter(m=>m.estimate||m.estimateMethod==='ai').length===1?'':'en'}</p>`;
+}
+function renderNutritionAnalytics(){
+ const root=document.getElementById('nutritionAnalyticsCard');if(!root)return;
+ const range=document.getElementById('nutritionRange');
+ const rangeValue=range?.value||'30';
+ const rangeDays=rangeValue==='all'?null:Number(rangeValue);
+ const a=aggregateNutrition(data.meals,rangeDays);
+ renderNutritionGoalProgress();
+ const stats=document.getElementById('nutritionStats');
+ if(stats)stats.innerHTML=
+  `<div class="stat"><span>Ø Kalorien / erfasster Tag</span><b>${a.averageKcal===null?'—':nutritionFormat(a.averageKcal)+' kcal'}</b></div>`+
+  `<div class="stat"><span>Ø Protein / erfasster Tag</span><b>${a.averageProtein===null?'—':nutritionFormat(a.averageProtein)+' g'}</b></div>`+
+  `<div class="stat"><span>Erfasste Tage</span><b>${a.daysTracked}</b><span>mit Nährwertdaten</span></div>`+
+  `<div class="stat"><span>Mahlzeiten</span><b>${a.mealCount}</b><span>im gewählten Zeitraum</span></div>`;
+ const trend=document.getElementById('nutritionDailyTrend');
+ if(trend){
+  const maxKcal=Math.max(1,...a.daily.map(x=>x.kcalCount?x.kcal:0));
+  const maxProtein=Math.max(1,...a.daily.map(x=>x.proteinCount?x.protein:0));
+  trend.innerHTML=a.daily.some(x=>x.meals)?a.daily.map(x=>{
+   const label=x.date.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
+   if(!x.meals)return `<div class="nutrition-day empty"><span class="nutrition-day-label">${label}</span><span class="nutrition-day-empty">Keine Einträge</span></div>`;
+   const kw=x.kcalCount?Math.max(2,x.kcal/maxKcal*100):0,pw=x.proteinCount?Math.max(2,x.protein/maxProtein*100):0;
+   return `<div class="nutrition-day"><div class="nutrition-day-head"><b>${label}</b><span>${x.meals} Mahlzeit${x.meals===1?'':'en'}${x.estimated?` · ${x.estimated} Schätzung${x.estimated===1?'':'en'}`:''}</span></div><div class="nutrition-metric"><span>kcal</span><div class="nutrition-track"><i class="calories" style="width:${kw}%"></i></div><b>${x.kcalCount?nutritionFormat(x.kcal)+' kcal':x.unknownKcal?'offen':'—'}</b></div><div class="nutrition-metric"><span>Protein</span><div class="nutrition-track"><i class="protein" style="width:${pw}%"></i></div><b>${x.proteinCount?nutritionFormat(x.protein)+' g':x.unknownProtein?'offen':'—'}</b></div></div>`;
+  }).join(''):'<p class="notice">Noch keine Mahlzeiten im gewählten Zeitraum erfasst.</p>';
+ }
+ const weekly=document.getElementById('nutritionWeeklySummary');
+ if(weekly){
+  weekly.innerHTML=a.weeks.length?a.weeks.slice().reverse().map(w=>{
+   const end=new Date(w.weekStart);end.setDate(end.getDate()+6);
+   const rangeLabel=`${w.weekStart.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})} – ${end.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}`;
+   const avgK=w.kcalDays?w.kcal/w.kcalDays:null,avgP=w.proteinDays?w.protein/w.proteinDays:null;
+   return `<div class="nutrition-week"><div class="nutrition-week-title"><b>Woche ${rangeLabel}</b><span>${w.loggedDays} erfasste Tage · ${w.meals} Mahlzeiten</span></div><div class="nutrition-week-grid"><div><span>Kalorien gesamt</span><b>${w.kcalDays?nutritionFormat(w.kcal)+' kcal':'—'}${w.unknownKcal?` · ${w.unknownKcal} offen`:''}</b><small>Ø ${avgK===null?'—':nutritionFormat(avgK)+' kcal / Tag'}</small></div><div><span>Protein gesamt</span><b>${w.proteinDays?nutritionFormat(w.protein)+' g':'—'}${w.unknownProtein?` · ${w.unknownProtein} offen`:''}</b><small>Ø ${avgP===null?'—':nutritionFormat(avgP)+' g / Tag'}</small></div></div><div class="nutrition-week-goals"><span>Kalorienziel im Orientierungsbereich: <b>${w.kcalGoalDays}/${w.kcalDays}</b> erfasste Tage</span><span>Proteinziel erreicht: <b>${w.proteinGoalDays}/${w.proteinDays}</b> erfasste Tage</span></div>${w.estimated?`<small class="nutrition-estimate">${w.estimated} KI-geschätzte Mahlzeiten</small>`:''}</div>`;
+  }).join(''):'<p class="notice">Noch keine Wochenwerte vorhanden. Sobald Mahlzeiten gespeichert sind, erscheinen hier Wochenübersichten.</p>';
+ }
+ const note=document.getElementById('nutritionDataNote');
+ if(note){
+  note.textContent=a.mealCount?`${a.estimatedMeals} von ${a.mealCount} Mahlzeiten sind als KI-Schätzung markiert. Offene Nährwerte: ${a.unknownKcal} Kalorien- und ${a.unknownProtein} Proteinwerte. Tagesdurchschnitte berücksichtigen nur bekannte Werte; leere Tage werden ausgelassen. Das Kalorienziel gilt in der Wochenübersicht als getroffen, wenn der Tag innerhalb von ±10 % liegt; das Proteinziel ab 100 %.`:'Nährwerte werden aus deinen gespeicherten Mahlzeiten gelesen. Ohne Einträge wird kein Durchschnitt berechnet.';
+ }
+}
+
+
+function weeklyCoachDateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function weeklyCoachData(){
+ const end=new Date();end.setHours(23,59,59,999);
+ const start=new Date();start.setDate(start.getDate()-6);start.setHours(0,0,0,0);
+ const inWindow=ts=>{const n=Number(ts||0);return n>=start.getTime()&&n<=end.getTime()};
+ const sessions=(data.sessions||[]).filter(s=>s&&s.status==='completed'&&inWindow(s.completedAt||s.ts||s.startedAt));
+ const meals=(data.meals||[]).filter(m=>m&&typeof m.date==='string'&&m.date>=weeklyCoachDateKey(start)&&m.date<=weeklyCoachDateKey(end));
+ const kcalRows=meals.filter(m=>m.c!==null&&m.c!==undefined&&m.c!==''&&Number.isFinite(Number(m.c))&&Number(m.c)>=0);
+ const proteinRows=meals.filter(m=>m.p!==null&&m.p!==undefined&&m.p!==''&&Number.isFinite(Number(m.p))&&Number(m.p)>=0);
+ const kcalByDay=new Map(),proteinByDay=new Map();
+ kcalRows.forEach(m=>kcalByDay.set(m.date,(kcalByDay.get(m.date)||0)+Number(m.c)));
+ proteinRows.forEach(m=>proteinByDay.set(m.date,(proteinByDay.get(m.date)||0)+Number(m.p)));
+ const goals=data.nutritionGoals||{kcal:2550,protein:170},kcalGoal=Number(goals.kcal)||2550,proteinGoal=Number(goals.protein)||170;
+ const kcalDays=[...kcalByDay.values()],proteinDays=[...proteinByDay.values()];
+ const withinGoal=kcalDays.filter(v=>v>=kcalGoal*.9&&v<=kcalGoal*1.1).length;
+ const proteinMet=proteinDays.filter(v=>v>=proteinGoal).length;
+ const completedSets=sessions.reduce((sum,s)=>sum+(s.exerciseItems||[]).reduce((a,e)=>a+(e.sets||[]).filter(x=>x.completed).length,0),0);
+ const volume=sessions.reduce((sum,s)=>sum+(s.exerciseItems||[]).reduce((a,e)=>a+(e.sets||[]).filter(x=>x.completed&&x.weightKg!==null&&Number.isFinite(Number(x.weightKg))&&Number.isFinite(Number(x.reps))).reduce((b,x)=>b+Number(x.weightKg)*Number(x.reps),0),0),0);
+ const exerciseCount=sessions.reduce((sum,s)=>sum+(s.exerciseItems||[]).filter(e=>(e.sets||[]).some(x=>x.completed)).length,0);
+ const estimates=meals.filter(m=>m.estimate||m.estimateMethod==='ai').length;
+ return {start,end,sessions,meals,kcalRows,proteinRows,kcalByDay,proteinByDay,kcalGoal,proteinGoal,withinGoal,proteinMet,completedSets,volume,exerciseCount,estimates,kcalDays,proteinDays};
+}
+function runWeeklyCoach(){
+ const a=weeklyCoachData(),root=document.getElementById('weeklyCoachResult'),aiBtn=document.getElementById('weeklyCoachAIButton'),status=document.getElementById('weeklyCoachStatus');
+ const dateLabel=`${a.start.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}–${a.end.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}`;
+ const avg=(arr)=>arr.length?arr.reduce((x,y)=>x+y,0)/arr.length:null;
+ const avgK=avg(a.kcalDays),avgP=avg(a.proteinDays);
+ const suggestions=[];
+ if(a.sessions.length===0)suggestions.push('Es ist noch kein abgeschlossenes Krafttraining in diesem Zeitraum dokumentiert. Trage deine Einheiten nach dem Abschluss ein, damit die Trainingsanalyse aussagekräftiger wird.');
+ else if(a.sessions.length<2)suggestions.push('Du hast eine einzelne Trainingseinheit dokumentiert. Wenn es zu deiner Regeneration und deinem Alltag passt, plane eine weitere Einheit – ohne dich zu einem festen Wochentag zu zwingen.');
+ else if(a.completedSets>0)suggestions.push('Dein Training ist dokumentiert. Achte beim nächsten Durchlauf auf saubere Technik und vergleiche Wiederholungen oder Gewicht nur bei gleicher Übungsausführung.');
+ if(a.meals.length===0)suggestions.push('Es fehlen Mahlzeiteneinträge. Eine vollständigere Dokumentation verbessert die Ernährungsanalyse; fehlende Tage werden nicht als null gewertet.');
+ else {
+  if(a.proteinDays.length&&a.proteinMet<a.proteinDays.length)suggestions.push(`Das Proteinziel wurde an ${a.proteinMet} von ${a.proteinDays.length} erfassten Tagen erreicht. Prüfe, ob eine zusätzliche proteinreiche Mahlzeit oder ein proteinreicher Snack in deinen Alltag passt.`);
+  if(a.kcalDays.length&&a.withinGoal<a.kcalDays.length)suggestions.push(`Die erfassten Kalorientage lagen an ${a.withinGoal} von ${a.kcalDays.length} Tagen im Bereich von ±10 % deines Ziels. Prüfe Portionsschätzungen und die Regelmäßigkeit deiner Einträge, bevor du das Ziel änderst.`);
+  if(a.estimates)suggestions.push(`${a.estimates} Mahlzeit(en) sind KI-Schätzungen. Nutze sie als Näherung und korrigiere Portionsgrößen, wenn du genauere Angaben hast.`);
+ }
+ if(!suggestions.length)suggestions.push('Deine Datenlage ist noch zu klein für eine belastbare Empfehlung. Dokumentiere weitere Trainings und Mahlzeiten.');
+ root.innerHTML=`<div class="grid" style="margin-top:10px"><div class="stat"><span>Abgeschlossene Einheiten</span><b>${a.sessions.length}</b><span>letzte 7 Tage</span></div><div class="stat"><span>Abgeschlossene Sätze</span><b>${a.completedSets}</b><span>${a.exerciseCount} Übungen mit Sätzen</span></div><div class="stat"><span>Ø Kalorien</span><b>${avgK===null?'—':nutritionFormat(avgK)}</b><span>${a.kcalDays.length} erfasste Tage</span></div><div class="stat"><span>Ø Protein</span><b>${avgP===null?'—':nutritionFormat(avgP)+' g'}</b><span>${a.proteinDays.length} erfasste Tage</span></div></div>
+ <div class="notice">Zeitraum: ${dateLabel} · Dokumentiertes externes Lastvolumen: ${nutritionFormat(a.volume)} kg · ${a.meals.length} Mahlzeiten (${a.estimates} Schätzungen). Das Volumen erfasst nur Sätze mit dokumentiertem Gewicht und Wiederholungen.</div>
+ <h4>Konkrete nächste Schritte</h4><ul>${suggestions.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+ <p class="muted">Aktuelle Ziele bleiben unverändert: ${nutritionFormat(a.kcalGoal)} kcal und ${nutritionFormat(a.proteinGoal)} g Protein pro Tag. Die Analyse ist eine Orientierung, keine medizinische Beratung.</p>`;
+ aiBtn.style.display=aiConsentGiven()?'block':'none';
+ status.textContent='Lokale Analyse abgeschlossen. Es wurden keine Daten an einen Server gesendet.';
+ window._weeklyCoachSnapshot={period:dateLabel,sessions:a.sessions.length,completedSets:a.completedSets,documentedVolumeKg:Math.round(a.volume),mealCount:a.meals.length,estimatedMeals:a.estimates,averageKcal:avgK===null?null:Math.round(avgK),averageProtein:avgP===null?null:Math.round(avgP),kcalGoal:a.kcalGoal,proteinGoal:a.proteinGoal,kcalGoalDaysWithin10Percent:a.withinGoal,kcalDays:a.kcalDays.length,proteinGoalDaysMet:a.proteinMet,proteinDays:a.proteinDays.length};
+}
+async function askAIWeeklyCoach(){
+ const status=document.getElementById('weeklyCoachStatus');
+ if(!aiConsentGiven()){status.textContent='Bitte zuerst die KI-Verbindung einrichten und die Einwilligung aktivieren.';return}
+ if(!document.getElementById('weeklyCoachIncludeData').checked){status.textContent='Aktiviere zuerst das separate Häkchen, wenn diese Wochenzusammenfassung an die KI gesendet werden soll.';return}
+ if(!window._weeklyCoachSnapshot)runWeeklyCoach();
+ const snapshot=window._weeklyCoachSnapshot;
+ status.textContent='Die KI erstellt eine ergänzende Empfehlung …';
+ const btn=document.getElementById('weeklyCoachAIButton');btn.disabled=true;
+ try{
+  const r=await callGlowAI('coach',{message:'Analysiere meine letzten sieben Tage als Fitness- und Ernährungscoach. Nenne höchstens drei konkrete, realistische nächste Schritte. Verändere meine Ziele nicht und behandle Schätzwerte vorsichtig. Wenn Daten fehlen, sage das klar.',context:{weeklySummary:snapshot}});
+  const box=document.createElement('div');box.className='chatbubble ai';box.textContent=String(r.answer||'Keine Empfehlung erhalten.');
+  document.getElementById('weeklyCoachResult').appendChild(box);
+  status.textContent='KI-Empfehlung erhalten. Deine Ziele wurden nicht verändert.';
+ }catch(e){status.textContent='KI-Empfehlung nicht verfügbar: '+e.message}
+ finally{btn.disabled=false}
+}
+
+function saveCheckin(){let w=Number(document.getElementById('weightInput').value),z=Number(document.getElementById('waistInput').value);if(w<=0||z<=0)return alert('Bitte Gewicht und Bauchumfang eintragen.');data.checks.push({id:'check_'+Date.now(),w,z,d:new Date().toLocaleDateString('de-DE'),ts:Date.now(),dateKey:today()});document.getElementById('weightInput').value='';document.getElementById('waistInput').value='';save();drawChart()}
+function saveWeek(){data.week=Number(document.getElementById('weekSelect').value);save()}
+function confirmRemoveChallenge(){if(confirm('Möchtest du die 8-Wochen-Challenge wirklich entfernen?')){data.challengeVisible=false;save()} }
+function weekKey(d=new Date()){let x=new Date(d);x.setHours(0,0,0,0);x.setDate(x.getDate()-(x.getDay()+6)%7);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}
+const trainingTypes=['Push','Pull','Beine & Core','Bauch & Core','Upper'];
+function cycleSessions(){return data.sessions.filter(s=>s.type!=='Rest Day'&&s.ts>=data.trainingCycleStart&&s.status==='completed')}
+function refreshTrainingCycle(){let done=new Set(cycleSessions().map(s=>s.type));let allDone=trainingTypes.every(t=>done.has(t));let expired=Date.now()-data.trainingCycleStart>=7*24*60*60*1000;if(allDone||expired){data.trainingCycleStart=Date.now();data.trainingCycleNumber=(data.trainingCycleNumber||1)+1;persist();}}
+function sessionsThisWeek(){refreshTrainingCycle();return data.sessions.filter(s=>s.ts>=data.trainingCycleStart)}
+function hasTodayTrainingSlot(){return !!data.trainingDaySlots[today()]}
+const groups={
+'Push':['Brust','Schultern','Trizeps'],'Pull':['Rücken','Bizeps'],'Beine & Core':['Beine','Bauch/Core'],'Bauch & Core':['Bauch/Core'],'Upper':['Brust','Rücken','Schultern','Bizeps','Trizeps']};
+const catalogue={
+'Push':{'Brust':['Langhantel-Bankdrücken','Kurzhantel-Bankdrücken','Schrägbankdrücken','Schrägbank-Kurzhanteldrücken','Fliegende','Cable Flys','Liegestütze','Dips'],'Schultern':['Military Press','Kurzhantel-Schulterdrücken','Arnold Press','Seitheben','Vorgebeugtes Seitheben','Frontheben','Landmine Press'],'Trizeps':['Skull Crusher','French Press','Überkopf-Trizepsstrecken','Enges Bankdrücken','Trizepsdrücken am Band','Kickbacks','Dips']},
+'Pull':{'Rücken':['Klimmzüge','Chin-ups','Langhantelrudern','Pendlay Rows','Einarmiges Kurzhantelrudern','Brustgestütztes Rudern','Kurzhantel-Pullover','Band-Latzug','Reverse Flys','Shrugs'],'Bizeps':['Langhantel Curls','SZ-Curls','Kurzhantel Curls','Alternierende Curls','Hammer Curls','Incline Dumbbell Curls','Bayesian Curls (Band)','Spider Curls','Preacher Curls','Concentration Curls','Drag Curls','Reverse Curls','Zottman Curls','Cross-body Hammer Curls'],'Unterarme':['Wrist Curls','Reverse Wrist Curls','Dead Hang','Farmer’s Carry']},
+'Beine & Core':{'Beine':['Kniebeugen','Front Squats','Goblet Squats','Rumänisches Kreuzheben','Bulgarian Split Squats','Ausfallschritte','Hip Thrusts','Wadenheben','Step-ups','Good Mornings'],'Bauch/Core':['Plank','Side Plank','Beinheben','Crunches','Reverse Crunches','Dead Bug','Russian Twists','Ab Wheel']},
+'Bauch & Core':{'Bauch/Core':['Plank','Side Plank','Beinheben','Crunches','Russian Twists','Dead Bug','Reverse Crunches','Mountain Climbers','Hollow Hold']},
+'Upper':{'Brust':['Kurzhantel-Bankdrücken','Liegestütze','Schrägbankdrücken','Fliegende'],'Rücken':['Klimmzüge','Kurzhantelrudern','Langhantelrudern','Band-Latzug'],'Schultern':['Military Press','Seitheben','Reverse Flys','Arnold Press'],'Bizeps':['Bayesian Curls (Band)','Hammer Curls','Spider Curls','Incline Curls','Preacher Curls'],'Trizeps':['Skull Crusher','Überkopf-Trizepsstrecken','Enges Bankdrücken']}}
+const forearms=['Wrist Curls','Reverse Wrist Curls','Dead Hang','Farmer’s Carry'];
+let selectedType=null,selectedExercises={};
+function recommend(t){let recent=data.sessions.filter(s=>s.type!=='Rest Day'&&s.status==='completed').sort((a,b)=>b.ts-a.ts);if(!recent.length)return ['Empfohlen','good'];let same=recent.find(s=>s.type===t);if(same&&(Date.now()-same.ts)<36*3600000)return ['Nicht empfohlen','bad'];if(same&&(Date.now()-same.ts)<60*3600000)return ['Eher nicht','warn'];if(recent[0]&&Date.now()-recent[0].ts<36*3600000&&groups[t].some(g=>recent[0].groups.includes(g)))return ['Eher nicht','warn'];return ['Empfohlen','good']}
+
+const balanceTypeMuscles={
+ 'Push':['Brust','Schultern','Trizeps'],
+ 'Pull':['Rücken','Bizeps','Unterarme'],
+ 'Beine & Core':['Quadrizeps','Beinbeuger','Gesäß','Waden','Bauch & Core'],
+ 'Bauch & Core':['Bauch & Core'],
+ 'Upper':['Brust','Rücken','Schultern','Bizeps','Trizeps']
+};
+function balanceDate(session){return Number(session.completedAt||session.ts||session.startedAt||0)}
+function balanceMuscles(value,fallbackGroup){
+ let found=textMuscles(value||'');
+ if(!found.length){
+  let group=String(fallbackGroup||'').toLowerCase();
+  if(group.includes('bein'))found=['Quadrizeps','Beinbeuger','Gesäß','Waden'];
+  else if(group.includes('bauch')||group.includes('core'))found=['Bauch & Core'];
+  else found=textMuscles(group);
+ }
+ return found;
+}
+function trainingBalanceSnapshot(){
+ const now=Date.now(),seven=now-7*86400000,fourteen=now-14*86400000;
+ const sessions=completedWorkoutSessions().filter(s=>balanceDate(s)>0);
+ const recent=sessions.filter(s=>balanceDate(s)>=fourteen&&balanceDate(s)<=now);
+ const stats=new Map(muscleTerms.map(([m])=>[m,{sets7:0,sets14:0,lastAt:0,main7:0,secondary7:0}]));
+ recent.forEach(s=>{
+  const stamp=balanceDate(s);
+  (s.exerciseItems||[]).forEach(e=>{
+   const done=(e.sets||[]).filter(x=>x&&x.completed);
+   if(!done.length)return;
+   const main=balanceMuscles(e.primaryMuscles||e.hauptmuskeln||'',e.group);
+   const secondary=balanceMuscles(e.secondaryMuscles||e.hilfsmuskeln||'','');
+   main.forEach(m=>{
+    const v=stats.get(m);if(!v)return;
+    v.sets14+=done.length;v.lastAt=Math.max(v.lastAt,stamp);
+    if(stamp>=seven){v.sets7+=done.length;v.main7+=done.length;}
+   });
+   secondary.filter(m=>!main.includes(m)).forEach(m=>{
+    const v=stats.get(m);if(!v)return;
+    v.sets14+=done.length;v.lastAt=Math.max(v.lastAt,stamp);
+    if(stamp>=seven){v.sets7+=done.length;v.secondary7+=done.length;}
+   });
+  });
+ });
+ // Include the most recent historic exposure for recovery even if it is older than 14 days.
+ sessions.forEach(s=>{
+  const stamp=balanceDate(s);
+  if(stamp>now)return;
+  (s.exerciseItems||[]).forEach(e=>{
+   if(!(e.sets||[]).some(x=>x&&x.completed))return;
+   const main=balanceMuscles(e.primaryMuscles||e.hauptmuskeln||'',e.group);
+   const secondary=balanceMuscles(e.secondaryMuscles||e.hilfsmuskeln||'','');
+   [...new Set([...main,...secondary])].forEach(m=>{
+    const v=stats.get(m);if(v)v.lastAt=Math.max(v.lastAt,stamp);
+   });
+  });
+ });
+ const cycleStart=Number(data.trainingCycleStart||0);
+ const usedTypes=new Set((data.sessions||[]).filter(s=>s&&s.status==='completed'&&s.type!=='Rest Day'&&Number(s.ts||0)>=cycleStart).map(s=>s.type));
+ const allTypes=Object.keys(balanceTypeMuscles);
+ const roundComplete=allTypes.every(t=>usedTypes.has(t));
+ const eligibleTypes=roundComplete?allTypes:allTypes.filter(t=>!usedTypes.has(t));
+ const candidates=eligibleTypes.map(type=>{
+  const muscles=balanceTypeMuscles[type];
+  const load=muscles.reduce((sum,m)=>sum+(stats.get(m)?.sets7||0),0);
+  const recentHours=muscles.map(m=>stats.get(m)?.lastAt||0).filter(Boolean).map(t=>(now-t)/3600000);
+  const minRestHours=recentHours.length?Math.min(...recentHours):Infinity;
+  const fatigued= minRestHours<36;
+  return {type,muscles,load,minRestHours,fatigued};
+ }).sort((a,b)=>(a.fatigued-b.fatigued)||(a.load-b.load)||(b.minRestHours-a.minRestHours));
+ return {now,sessions,recent,stats,candidates,seven,fourteen};
+}
+function startRecommendedWorkout(type){
+ if(!balanceTypeMuscles[type])return;
+ const cycle=sessionsThisWeek().filter(s=>s.type!=='Rest Day'&&s.status==='completed').map(s=>s.type);
+ if(cycle.includes(type))return alert('Dieser Trainingstyp ist in deiner aktuellen Runde bereits abgeschlossen. Wähle einen anderen Typ oder starte nach Abschluss der Runde die nächste.');
+ startWorkoutBuilder();
+ chooseType(type);
+}
+function renderTrainingBalance(){
+ const root=document.getElementById('trainingBalanceSummary');
+ if(!root)return;
+ const snap=trainingBalanceSnapshot();
+ if(!snap.sessions.length){
+  root.innerHTML='<div class="notice">Noch keine abgeschlossenen Trainingseinheiten mit Satzdaten vorhanden. Sobald du ein Training abschließt, zeigt dir die App hier die Muskelgruppen-Balance und eine vorsichtige nächste Empfehlung.</div>';
+  return;
+ }
+ const rows=[...snap.stats.entries()].map(([name,v])=>({name,...v})).filter(x=>x.sets14>0).sort((a,b)=>a.sets7-b.sets7||b.sets14-a.sets14);
+ const max=Math.max(1,...rows.map(x=>x.sets7));
+ const groupsHtml=rows.length?rows.map(x=>{
+  const last=x.lastAt?`${Math.max(0,Math.floor((snap.now-x.lastAt)/3600000))} Std. her`:'—';
+  return `<div class="balance-group"><div class="row"><b>${esc(x.name)}</b><span class="pill">${x.sets7} Sätze / 7 Tage</span></div><div class="balance-bar"><i style="width:${x.sets7/max*100}%"></i></div><div class="balance-meta"><span>${x.sets14} Sätze / 14 Tage</span><span>Zuletzt: ${last}</span></div></div>`;
+ }).join(''):'<p class="notice">Es konnten noch keine Muskelgruppen aus den dokumentierten Übungen zugeordnet werden.</p>';
+ const available=snap.candidates.filter(c=>!c.fatigued);
+ let suggestion='';
+ if(!available.length){
+  suggestion='<div class="balance-suggest"><b>Regeneration könnte gerade sinnvoll sein</b><div class="balance-status">Die dokumentierten Belastungen liegen bei allen Trainingstypen teilweise weniger als 36 Stunden zurück. Gönn dir bei Bedarf Erholung und prüfe später erneut. Das ist eine Orientierung, keine Sperre.</div></div>';
+ }else{
+  const best=available[0],least=best.load;
+  const reason=best.load===0?'Für diese Muskelgruppen sind in den letzten 7 Tagen keine abgeschlossenen Arbeitssätze dokumentiert.':
+   `Diese Muskelgruppen haben im Vergleich zu den anderen Trainingstypen aktuell eine geringere dokumentierte 7-Tage-Belastung (${least} Sätze).`;
+  suggestion=`<div class="balance-suggest"><b>Nächste Option: ${esc(best.type)}</b><div class="balance-status">${reason} Keine der zugeordneten Muskelgruppen wurde laut Einträgen innerhalb der letzten 36 Stunden belastet. Regeneration und dein persönliches Gefühl gehen trotzdem vor.</div><button class="btn full" style="margin-top:10px" onclick="startRecommendedWorkout('${best.type}')">${esc(best.type)} auswählen</button></div>`;
+ }
+ root.innerHTML=`<div class="notice">Ausgewertet: ${snap.recent.length} abgeschlossene Einheit(en) in den letzten 14 Tagen. Gezählt werden nur dokumentierte, abgeschlossene Arbeitssätze. Hilfsmuskeln werden separat in der Zuordnung berücksichtigt.</div>
+ <h4>Muskelgruppen-Belastung</h4>${groupsHtml}${suggestion}
+ <p class="balance-status">Hinweis: Die Satzanzahl misst dein dokumentiertes Trainingspensum, nicht direkt Muskelwachstum, Ermüdung oder Verletzungsrisiko. Bei fehlenden oder ungenauen Übungs-Muskelangaben kann die Zuordnung abweichen.</p>`;
+}
+
+function startWorkoutBuilder(){document.getElementById('builder').style.display='block';document.getElementById('builtPlan').style.display='none';selectedType=null;renderTypeChoices()}
+function renderTypeChoices(){let used=new Set(sessionsThisWeek().filter(s=>s.type!=='Rest Day'&&s.status==='completed').map(s=>s.type));let all=Object.keys(catalogue),roundDone=all.every(t=>used.has(t)),avail=roundDone?all:all.filter(t=>!used.has(t));let html='<h4>Wähle deinen Trainingstyp</h4><p class="notice">Nach einer Runde mit allen fünf Trainingstypen beginnt eine neue Runde. Du kannst die Empfehlungen übergehen.</p><div class="grid">'+avail.map(t=>{let r=recommend(t);return `<button class="card" style="text-align:left;color:var(--text);border-color:${r[1]==='good'?'#426d61':r[1]==='warn'?'#806a42':'#794452'}" onclick="chooseType('${t}')"><b>${t}</b><div style="margin-top:8px"><span class="${r[1]}">${r[0]}</span></div></button>`}).join('')+'</div>';let rests=sessionsThisWeek().filter(s=>s.type==='Rest Day').length;html+=`<div class="card"><div class="row"><b>Rest Day</b><span class="pill">${rests}/3 diese Woche</span></div><button class="btn secondary full" ${rests>=3?'disabled':''} onclick="logRest()">Rest Day eintragen</button></div>`;document.getElementById('exercisePicker').innerHTML=html}
+function chooseType(t){
+ selectedType=t;selectedExercises={};let obj=catalogue[t];
+ let html=`<div class="row"><h4>${t} – Übungen auswählen</h4><button class="btn secondary" onclick="renderTypeChoices()">Zurück</button></div><p class="notice">Öffne eine Muskelgruppe, wähle eine Übung aus und klappe sie wieder zu. Du kannst pro Muskelgruppe eine Übung auswählen.</p>`;
+ for(let [g,arr] of Object.entries(obj)){
+   let id='grp_'+g.replace(/[^a-z]/gi,'');
+   html+=`<details class="card" style="margin:8px 0"><summary style="cursor:pointer;font-weight:800">${g} <span class="muted">· ${arr.length} Übungen</span></summary><div style="padding-top:8px">`+
+   arr.map(e=>`<label class="item"><input type="radio" name="${id}" value="${e}" onchange="selectOneEx(this,'${g}')"><span class="grow">${e}</span></label>`).join('')+
+   `</div></details>`;
+ }
+ html+=`<details class="card" style="margin:8px 0"><summary style="cursor:pointer;font-weight:800">Unterarme (optional) · 0–2 Übungen</summary><div style="padding-top:8px">`+
+ forearms.map(e=>`<label class="item"><input type="checkbox" value="${e}" data-group="Unterarme" onchange="selectForearm(this)"><span class="grow">${e}</span></label>`).join('')+
+ `</div></details><button class="btn full" onclick="makePlan()">Trainingsplan erstellen</button>`;
+ document.getElementById('exercisePicker').innerHTML=html;
+}
+function selectOneEx(el,g){Object.keys(selectedExercises).forEach(k=>{if(selectedExercises[k]===g)delete selectedExercises[k]});if(el.checked)selectedExercises[el.value]=g}
+function selectForearm(el){if(el.checked&&Object.values(selectedExercises).filter(x=>x==='Unterarme').length>=2){el.checked=false;alert('Maximal zwei optionale Unterarmübungen.');return}if(el.checked)selectedExercises[el.value]='Unterarme';else delete selectedExercises[el.value]}
+function selectEx(el){if(el.checked){if(el.dataset.group==='Unterarme'&&Object.values(selectedExercises).filter(x=>x==='Unterarme').length>=2){el.checked=false;alert('Maximal zwei optionale Unterarmübungen.');return}selectedExercises[el.value]=el.dataset.group}else delete selectedExercises[el.value]}
+function makePlan(){
+ if(hasTodayTrainingSlot())return alert('Du hast heute bereits einen Trainingsplan reserviert. Ein neuer Plan ist ab 00:00 Uhr möglich.');
+ let entries=Object.entries(selectedExercises);if(!selectedType||!entries.length)return alert('Bitte mindestens eine Übung auswählen.');
+ let gs=[...new Set(entries.map(x=>x[1]))],ts=Date.now(),sid='session_'+ts+'_'+Math.random().toString(36).slice(2,8);
+ let items=entries.map(([name,group])=>{let lib=exerciseLibrary.find(x=>x.name_de===name)||exerciseLibrary.find(x=>x.name_en===name);return {exerciseId:lib?String(lib.id):'custom-name-'+name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),nameSnapshot:name,group,equipmentSnapshot:lib?lib.geraet_glowup:'Nicht hinterlegt',primaryMuscles:lib?lib.hauptmuskeln:group,secondaryMuscles:lib?lib.hilfsmuskeln:'',targetSets:3,targetRepsMin:8,targetRepsMax:12,restSeconds:lib&&/isol|curl|raise|fly|extension/i.test(lib.bewegungsmuster||'')?60:90,sets:Array.from({length:3},(_,i)=>({id:sid+'_e'+0+'_'+i,setNo:i+1,weightKg:null,reps:null,completed:false,completedAt:null}))};});
+ items.forEach((it,i)=>it.sets.forEach((s,j)=>s.id=sid+'_e'+i+'_s'+j));
+ let session={id:sid,type:selectedType,groups:gs,exercises:entries.map(x=>x[0]),exerciseItems:items,ts,createdAt:ts,localDayKey:today(),week:weekKey(),status:'planned',startedAt:null,completedAt:null,activeElapsedMs:0,pausedAt:null,resumedAt:null,restTimer:null};
+ data.sessions.push(session);data.trainingDaySlots[today()]={sessionId:sid,reservedAt:ts};persist();
+ let html=`<div class="dayhead">${selectedType} · ${new Date(ts).toLocaleDateString('de-DE')}</div>`+entries.map(([e,g])=>`<div class="item"><span class="grow">${esc(e)}<div class="muted">${esc(g)}</div></span><span class="pill">3 × 8–12</span></div>`).join('')+`<h4>Beanspruchte Muskelgruppen</h4>${muscleGraphic(gs)}<p class="notice">Plan gespeichert. Die Einheit zählt erst nach dem Abschluss als erledigter Trainingstyp.</p><button class="btn full" onclick="startWorkout('${sid}')">Training starten</button>`;
+ document.getElementById('builtPlanBody').innerHTML=html;document.getElementById('builtPlan').style.display='block';document.getElementById('builder').style.display='none';render();
+}
+function muscleGraphic(gs){let relevant=gs.join(' ').toLowerCase();let hit=(terms)=>terms.some(t=>relevant.includes(t));return `<div class="muscles"><div class="bodyfigure"><div class="headshape"></div><div class="arm l ${hit(['rücken','bizeps','unterarme','schulter'])?'hl':''}"></div><div class="arm r ${hit(['rücken','bizeps','unterarme','schulter'])?'hl':''}"></div><div class="torso ${hit(['brust','rücken','bauch'])?'hl':''}"></div><div class="legs"><div class="leg ${hit(['beine'])?'hl':''}"></div><div class="leg ${hit(['beine'])?'hl':''}"></div></div></div><div class="notice">${gs.map(esc).join(' · ')}</div></div>`}
+function logRest(){if(sessionsThisWeek().filter(s=>s.type==='Rest Day').length>=3)return alert('Maximal drei Rest Days pro Woche.');data.sessions.push({id:'rest_'+Date.now(),type:'Rest Day',groups:[],exercises:[],ts:Date.now(),week:weekKey(),status:'completed',localDayKey:today()});save();renderTypeChoices()}
+let exerciseLibrary=[],libraryFilter='all',activeSessionId=null,restInterval=null;
+const libraryPrefs=()=>data.exerciseLibraryPrefs;
+function loadExerciseLibrary(){fetch('exercise-library.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{let builtIn=d.exercises||d;let custom=libraryPrefs().customExercises||[];exerciseLibrary=[...builtIn,...custom.filter(c=>!builtIn.some(x=>String(x.id)===String(c.id)))];let groups=[...new Set(exerciseLibrary.map(x=>x.muskelgruppe_glowup))].sort((a,b)=>a.localeCompare(b,'de'));let sel=document.getElementById('libraryGroup');sel.innerHTML='<option value="">Alle Muskelgruppen</option>'+groups.map(g=>`<option>${esc(g)}</option>`).join('');document.getElementById('libraryCount').textContent=exerciseLibrary.length+' Übungen';renderLibrary()}).catch(()=>{document.getElementById('libraryCount').textContent='Bibliothek offline nicht geladen';});}
+function toggleLibrary(force){let p=document.getElementById('libraryPanel');p.style.display=(force===undefined?p.style.display==='none':force)?'block':'none';if(p.style.display==='block'){if(!exerciseLibrary.length)loadExerciseLibrary();document.getElementById('librarySearch').focus();}}
+function renderLibrary(){let root=document.getElementById('libraryResults');if(!root)return;let q=(document.getElementById('librarySearch')?.value||'').toLowerCase().trim(),g=document.getElementById('libraryGroup')?.value||'',eq=document.getElementById('libraryEquipment')?.value||'',prefs=libraryPrefs(),list=exerciseLibrary.filter(x=>{let text=[x.name_de,x.name_en,x.muskelgruppe_glowup,x.hauptmuskeln,x.hilfsmuskeln,x.geraet_glowup].join(' ').toLowerCase();let ok=(!q||text.includes(q))&&(!g||x.muskelgruppe_glowup===g)&&(!eq||String(x.geraet_glowup).toLowerCase().includes(eq.toLowerCase()));if(libraryFilter==='favorites')ok=ok&&prefs.favoriteIds.includes(String(x.id));if(libraryFilter==='recent')ok=ok&&prefs.recent.some(r=>r.id===String(x.id));return ok;}).slice(0,200);root.innerHTML=list.length?list.map(x=>`<div class="libraryrow"><div class="grow"><b>${esc(x.name_de)}</b><div class="mini">${esc(x.name_en)} · ${esc(x.muskelgruppe_glowup)} · ${esc(x.geraet_glowup)}</div></div><button class="btn secondary" onclick="showExerciseDetail('${String(x.id)}')">Details</button><button class="btn secondary" onclick="toggleFavorite('${String(x.id)}')">${prefs.favoriteIds.includes(String(x.id))?'★':'☆'}</button></div>`).join(''):'<p class="notice">Keine passenden Übungen gefunden.</p>';}
+function showExerciseDetail(id){let x=exerciseLibrary.find(a=>String(a.id)===String(id));if(!x)return;let d=document.getElementById('libraryDetail');d.innerHTML=`<div class="exercise-detail"><div class="row"><b>${esc(x.name_de)}</b><button class="btn secondary" onclick="document.getElementById('libraryDetail').innerHTML=''">Schließen</button></div><div class="mini">${esc(x.name_en)} · ${esc(x.muskelgruppe_glowup)} · ${esc(x.geraet_glowup)} · ${esc(x.schwierigkeit_kuration)}</div><p><b>Hauptmuskeln:</b> ${esc(x.hauptmuskeln)}</p><p><b>Hilfsmuskeln:</b> ${esc(x.hilfsmuskeln)}</p><p><b>Startposition:</b> ${esc(x.startposition)}</p><b>Ausführung</b><ol>${(x.ausfuehrung_schritte||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><p><b>Atmung:</b> ${esc(x.atmung)}</p><p><b>Häufige Fehler:</b> ${esc(x.haeufige_fehler)}</p><p><b>Sicherheit:</b> ${esc(x.sicherheit)}</p><p><b>Leichtere Variante:</b> ${esc(x.leichtere_variante)}</p><p><b>Schwierigere Variante:</b> ${esc(x.schwierigere_variante)}</p><p><b>Dosierung:</b> ${esc(x.dosierung)}</p><div class="notice">Die Anleitung ist redaktionell erstellt und ersetzt keine persönliche Technikprüfung.</div><button class="btn full" onclick="addLibraryExerciseToPlan('${String(x.id)}')">Zum Trainingsplan hinzufügen</button><button class="btn secondary full" onclick="toggleFavorite('${String(x.id)}')">${libraryPrefs().favoriteIds.includes(String(x.id))?'★ Aus Favoriten entfernen':'☆ Als Favorit speichern'}</button></div>`;}
+
+function createCustomExercise(){
+ const name=document.getElementById('customExerciseName').value.trim();
+ const group=document.getElementById('customExerciseGroup').value;
+ const equipment=document.getElementById('customExerciseEquipment').value.trim()||'Nicht hinterlegt';
+ const main=document.getElementById('customExerciseMain').value.trim()||group;
+ const secondary=document.getElementById('customExerciseSecondary').value.trim();
+ const stepsRaw=document.getElementById('customExerciseSteps').value.trim();
+ const steps=stepsRaw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ if(name.length<2)return alert('Bitte einen Übungsnamen mit mindestens zwei Zeichen eingeben.');
+ if(!steps.length)return alert('Bitte mindestens einen Ausführungsschritt eintragen.');
+ if(name.length>80||steps.some(x=>x.length>300))return alert('Name oder Ausführungstext ist zu lang.');
+ const id='custom_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+ const item={id,name_de:name,name_en:name,muskelgruppe_glowup:group,geraet_glowup:equipment,hauptmuskeln:main,hilfsmuskeln:secondary,schwierigkeit_kuration:'Nicht bewertet',hinweis_kuration:'Eigene Übung – Ausführung und Belastung selbst fachgerecht prüfen.',startposition:'Eigene Startposition beachten und mit leichter Belastung beginnen.',ausfuehrung:steps.join(' '),ausfuehrung_schritte:steps,atmung:'Ruhig und kontrolliert atmen; nicht pressen.',haeufige_fehler:'Zu hohe Last, Schwung oder unkontrollierte Bewegung vermeiden.',sicherheit:'Bei Schmerzen abbrechen. Technik vor Belastung.',leichtere_variante:'Bewegungsumfang oder Last reduzieren.',schwierigere_variante:'Nur schrittweise steigern, wenn die Technik sicher bleibt.',dosierung:'Individuell festlegen; zunächst konservativ starten.',catalogue_text_source:'user-created',pruefstatus:'Vom Nutzer erstellt – nicht redaktionell geprüft'};
+ libraryPrefs().customExercises.push(item);
+ exerciseLibrary.push(item);
+ ['customExerciseName','customExerciseEquipment','customExerciseMain','customExerciseSecondary','customExerciseSteps'].forEach(id=>document.getElementById(id).value='');
+ persist();
+ const groups=[...new Set(exerciseLibrary.map(x=>x.muskelgruppe_glowup))].sort((a,b)=>a.localeCompare(b,'de'));
+ document.getElementById('libraryGroup').innerHTML='<option value="">Alle Muskelgruppen</option>'+groups.map(g=>`<option>${esc(g)}</option>`).join('');
+ document.getElementById('libraryCount').textContent=exerciseLibrary.length+' Übungen';
+ renderLibrary();showExerciseDetail(id);
+ alert('Eigene Übung gespeichert. Sie bleibt lokal auf diesem Gerät und wird in Backups übernommen.');
+}
+
+function toggleFavorite(id){let a=libraryPrefs().favoriteIds,i=a.indexOf(String(id));if(i>=0)a.splice(i,1);else a.push(String(id));persist();renderLibrary();if(document.getElementById('libraryDetail').innerHTML)showExerciseDetail(id);}
+function markExerciseRecent(id){let a=libraryPrefs().recent;a=a.filter(r=>r.id!==String(id));a.unshift({id:String(id),lastUsedAt:Date.now(),uses:1+(libraryPrefs().recent.find(r=>r.id===String(id))?.uses||0)});libraryPrefs().recent=a.slice(0,30);persist();}
+
+function addLibraryExerciseToPlan(id){let x=exerciseLibrary.find(a=>String(a.id)===String(id));if(!x)return;let types=['Push','Pull','Beine & Core','Bauch & Core','Upper'];if(!selectedType){let choice=prompt('Für welchen Trainingstyp?\\n1 = Push\\n2 = Pull\\n3 = Beine & Core\\n4 = Bauch & Core\\n5 = Upper','1');let idx=Number(choice)-1;if(!Number.isInteger(idx)||idx<0||idx>=types.length)return;selectedType=types[idx];selectedExercises={};}let group=x.muskelgruppe_glowup;if(['Quadrizeps','Beinbeuger','Gesäß','Waden'].includes(group))group='Beine';if(['Bauch','Bauch & Core','Core'].includes(group))group='Bauch/Core';if(!['Brust','Rücken','Schultern','Bizeps','Trizeps','Unterarme','Beine','Bauch/Core'].includes(group))group='Ganzkörper';selectedExercises[x.name_de]=group;document.getElementById('builder').style.display='block';document.getElementById('exercisePicker').innerHTML=`<h4>${esc(selectedType)} – ausgewählte Bibliotheksübungen</h4>${Object.entries(selectedExercises).map(([n,g])=>`<div class="item"><span class="grow">${esc(n)}<div class="mini">${esc(g)}</div></span></div>`).join('')}<button class="btn secondary full" onclick="toggleLibrary(true)">Weitere Übung aus Bibliothek wählen</button><button class="btn full" onclick="makePlan()">Trainingsplan erstellen</button>`;toggleLibrary(false);document.getElementById('builder').scrollIntoView({behavior:'smooth',block:'start'});}
+
+function swapWorkoutExercise(id,ei){let s=sessionById(id),old=s?.exerciseItems?.[ei];if(!s||!old||s.status!=='active')return;if(!exerciseLibrary.length)return alert('Die Übungsbibliothek wird noch geladen.');let oldGroup=old.group==='Bauch/Core'?'Bauch & Core':old.group;let allowedGroups=oldGroup==='Beine'?['Quadrizeps','Beinbeuger','Gesäß','Waden']:[oldGroup];let options=exerciseLibrary.filter(x=>allowedGroups.includes(x.muskelgruppe_glowup)&&String(x.id)!==String(old.exerciseId));if(!options.length)return alert('Keine passende Alternative in derselben Muskelgruppe gefunden.');let menu=options.slice(0,30).map((x,i)=>`${i+1}. ${x.name_de}`).join('\\n');let choice=prompt('Alternative Übung wählen (Nummer):\\n'+menu,'1');if(choice===null)return;let idx=Number(choice)-1;if(!Number.isInteger(idx)||idx<0||idx>=Math.min(30,options.length))return alert('Ungültige Auswahl.');let next=options[idx],done=old.sets.some(x=>x.completed),newItem={exerciseId:String(next.id),nameSnapshot:next.name_de,group:old.group,equipmentSnapshot:next.geraet_glowup,targetSets:3,targetRepsMin:8,targetRepsMax:12,restSeconds:old.restSeconds||90,sets:Array.from({length:3},(_,j)=>({id:s.id+'_swap_'+Date.now()+'_'+j,setNo:j+1,weightKg:null,reps:null,completed:false,completedAt:null})),swapHistory:[...(old.swapHistory||[]),{to:String(next.id),at:Date.now()}]};if(done){s.exerciseItems.splice(ei+1,0,newItem);}else{s.exerciseItems[ei]={...newItem,swapHistory:[...(old.swapHistory||[]),{from:old.exerciseId,to:String(next.id),at:Date.now()}]};}s.exercises=s.exerciseItems.map(x=>x.nameSnapshot);persist();renderActiveWorkout();}
+function editCompletedSet(id,ei,si){let s=sessionById(id),set=s?.exerciseItems?.[ei]?.sets?.[si];if(!set||!set.completed)return;let w=prompt('Gewicht in kg (leer lassen bei Körpergewicht):',set.weightKg??'');if(w===null)return;let r=prompt('Wiederholungen:',set.reps??'');if(r===null)return;let weight=w.trim()===''?null:Number(w),reps=Number(r);if(weight!==null&&(!Number.isFinite(weight)||weight<0))return alert('Ungültiges Gewicht.');if(!Number.isInteger(reps)||reps<1)return alert('Ungültige Wiederholungszahl.');if(!confirm('Abgeschlossenen Satz mit diesen Werten korrigieren?'))return;set.weightKg=weight;set.reps=reps;set.correctedAt=Date.now();persist();renderActiveWorkout();}
+function sessionById(id){return data.sessions.find(s=>s.id===id);}
+function startWorkout(id){let s=sessionById(id);if(!s)return;if(s.status==='completed'||s.status==='abandoned')return alert('Diese Einheit ist bereits beendet.');if(!s.status)s.status='planned';if(s.status==='planned'){s.status='active';s.startedAt=Date.now();s.resumedAt=s.startedAt;}else if(s.status==='paused'){resumeWorkout(id);return;}activeSessionId=id;persist();renderActiveWorkout();}
+function showActiveWorkout(){let s=data.sessions.filter(x=>['active','paused'].includes(x.status)).sort((a,b)=>b.ts-a.ts)[0];if(!s){alert('Aktuell gibt es kein laufendes Training.');return;}activeSessionId=s.id;document.getElementById('activeWorkoutCard').style.display='block';renderActiveWorkout();document.getElementById('activeWorkoutCard').scrollIntoView({behavior:'smooth',block:'start'});}
+function renderActiveWorkout(){let s=sessionById(activeSessionId);let card=document.getElementById('activeWorkoutCard'),root=document.getElementById('activeWorkout');if(!s||!root)return;card.style.display='block';let paused=s.status==='paused',done=s.exerciseItems.reduce((a,e)=>a+e.sets.filter(x=>x.completed).length,0),total=s.exerciseItems.reduce((a,e)=>a+e.sets.length,0),pct=total?Math.round(done/total*100):0;root.innerHTML=`<div class="row"><h4>${esc(s.type)} – ${paused?'Pausiert':'Training läuft'}</h4><span class="pill">${done} / ${total} Sätze</span></div><div class="workout-summary"><div><span class="mini">TRAININGSZEIT</span><b id="workoutElapsed">${formatWorkoutTime(s)}</b></div><div><span class="mini">FORTSCHRITT</span><b>${pct}%</b></div><div><span class="mini">ÜBUNGEN</span><b>${s.exerciseItems.length}</b></div></div><div class="progress workout-progress"><i style="width:${pct}%"></i></div><div class="notice">Gestartet: ${new Date(s.startedAt||s.ts).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}. Deine Eingaben werden lokal gespeichert.</div>`+s.exerciseItems.map((e,ei)=>{let ed=e.sets.filter(x=>x.completed).length,ep=e.sets.length?Math.round(ed/e.sets.length*100):0;return `<div class="exercise-detail"><div class="row"><b>${esc(e.nameSnapshot)}</b><span class="mini">${ed}/${e.sets.length}</span></div><div class="progress exercise-progress"><i style="width:${ep}%"></i></div><div class="mini">${esc(e.group)} · ${esc(e.equipmentSnapshot||'')}</div><div class="mini">Letzte Leistung: ${lastPerformance(e.exerciseId)}</div>${exerciseProgressionHint(e.exerciseId,e)}${e.sets.map((set,si)=>`<div class="setrow"><b>${si+1}.</b><input aria-label="Gewicht in kg" type="number" min="0" step="0.5" placeholder="kg" value="${set.weightKg??''}" onchange="updateSetField('${s.id}',${ei},${si},'weightKg',this.value)" ${paused||set.completed?'disabled':''}><input aria-label="Wiederholungen" type="number" min="1" step="1" placeholder="Wdh." value="${set.reps??''}" onchange="updateSetField('${s.id}',${ei},${si},'reps',this.value)" ${paused||set.completed?'disabled':''}><button class="btn ${set.completed?'secondary':''}" ${set.completed||paused?'disabled':''} onclick="finishSet('${s.id}',${ei},${si})">${set.completed?'✓':'Fertig'}</button>${set.completed?`<button class="btn secondary" onclick="editCompletedSet('${s.id}',${ei},${si})">Ändern</button>`:''}</div>`).join('')}<div class="grid"><button class="btn secondary" onclick="addWorkoutSet('${s.id}',${ei})" ${paused?'disabled':''}>+ Satz</button><button class="btn secondary" onclick="swapWorkoutExercise('${s.id}',${ei})" ${paused?'disabled':''}>Übung austauschen</button></div></div>`}).join('')+`<div id="restTimerBox">${renderTimerHtml(s)}</div><div class="grid"><button class="btn secondary" onclick="${paused?`resumeWorkout('${s.id}')`:`pauseWorkout('${s.id}')`}">${paused?'Fortsetzen':'Pausieren'}</button><button class="btn" onclick="finishWorkout('${s.id}')">Training abschließen</button></div><button class="btn danger full" onclick="abandonWorkout('${s.id}')">Training abbrechen</button>`;
+ startTimerTicker(s);
+}
+function formatWorkoutTime(s){let ms=s.activeElapsedMs||0;if(s.status==='active')ms+=Date.now()-(s.resumedAt||s.startedAt||Date.now());let sec=Math.max(0,Math.floor(ms/1000));return `${Math.floor(sec/3600).toString().padStart(2,'0')}:${Math.floor(sec%3600/60).toString().padStart(2,'0')}:${(sec%60).toString().padStart(2,'0')}`;}
+function lastPerformance(id){let old=data.sessions.filter(s=>s.status==='completed'&&s.id!==activeSessionId).sort((a,b)=>b.ts-a.ts);for(let s of old){let e=(s.exerciseItems||[]).find(x=>x.exerciseId===id);if(e){let vals=e.sets.filter(x=>x.completed).map(x=>`${x.weightKg==null?'Körpergewicht':x.weightKg+' kg'} × ${x.reps??'?'} Wdh.`);if(vals.length)return new Date(s.ts).toLocaleDateString('de-DE')+': '+vals.join(', ');}}return 'Noch keine dokumentierte Leistung';}
+
+function exerciseProgressionHistory(id){
+ const sessions=(data.sessions||[]).filter(s=>s&&s.status==='completed'&&s.id!==activeSessionId)
+  .sort((a,b)=>Number(b.completedAt||b.ts||0)-Number(a.completedAt||a.ts||0));
+ return sessions.map(s=>{
+  const e=(s.exerciseItems||[]).find(x=>String(x.exerciseId)===String(id));
+  if(!e)return null;
+  const sets=(e.sets||[]).filter(x=>x&&x.completed&&Number.isInteger(Number(x.reps))&&Number(x.reps)>0)
+   .map(x=>({reps:Number(x.reps),weight:x.weightKg===null||x.weightKg===undefined||x.weightKg===''?null:Number(x.weightKg)}))
+   .filter(x=>x.weight===null||(Number.isFinite(x.weight)&&x.weight>=0));
+  if(!sets.length)return null;
+  const weights=sets.filter(x=>x.weight!==null).map(x=>x.weight);
+  return {date:Number(s.completedAt||s.ts||0),sets,totalReps:sets.reduce((n,x)=>n+x.reps,0),
+   avgWeight:weights.length===sets.length?weights.reduce((n,x)=>n+x,0)/weights.length:null,
+   bodyweight:weights.length===0};
+ }).filter(Boolean);
+}
+function exerciseProgressionHint(id,exercise){
+ const history=exerciseProgressionHistory(id);
+ if(!history.length)return '<div class="notice" style="margin:8px 0">Progressions-Tipp: Noch keine abgeschlossene Vergleichseinheit. Nutze die nächste Einheit als Ausgangspunkt und dokumentiere Gewicht und Wiederholungen.</div>';
+ const last=history[0],sets=last.sets;
+ const min=Number(exercise.targetRepsMin)||8,max=Number(exercise.targetRepsMax)||12;
+ const allAtTop=sets.length>0&&sets.every(s=>s.reps>=max);
+ let advice='';
+ if(allAtTop&&last.avgWeight!==null){
+  const increment=Math.max(0.5,Math.round((last.avgWeight*0.025)*2)/2);
+  const nextWeight=Math.round((last.avgWeight+increment)*10)/10;
+  advice=`Alle dokumentierten Sätze lagen zuletzt bei mindestens ${max} Wiederholungen. Wenn die Technik stabil war und noch etwa 1–3 saubere Wiederholungen möglich gewesen wären, kannst du beim nächsten Mal vorsichtig ${nextWeight.toLocaleString('de-DE')} kg testen. Andernfalls bleib beim bisherigen Gewicht.`;
+ }else if(allAtTop&&last.bodyweight){
+  advice=`Du hast zuletzt in allen Sätzen mindestens ${max} Wiederholungen erreicht. Versuche zunächst 1 zusätzliche saubere Wiederholung pro Satz oder eine kontrolliertere Ausführung – Zusatzgewicht ist kein Muss.`;
+ }else if(sets.some(s=>s.reps<min)){
+  advice=`Bleib zunächst beim bisherigen Gewicht und arbeite daran, alle Arbeitssätze kontrolliert in den Zielbereich von ${min}–${max} Wiederholungen zu bringen. Falls die Technik leidet, reduziere das Gewicht.`;
+ }else{
+  advice=`Halte das bisherige Gewicht zunächst bei und versuche beim nächsten Training insgesamt 1–2 saubere Wiederholungen mehr zu erreichen. Steigere nur, solange die Technik stabil bleibt.`;
+ }
+ let trend='';
+ if(history.length>1){
+  const prev=history[1];
+  const sameLoad=last.avgWeight!==null&&prev.avgWeight!==null&&Math.abs(last.avgWeight-prev.avgWeight)<0.11;
+  if(sameLoad){
+   const delta=last.totalReps-prev.totalReps;
+   if(delta>0)trend=`Vergleich zur vorherigen Einheit: +${delta} Wiederholungen bei praktisch gleichem Gewicht.`;
+   else if(delta<0)trend=`Vergleich zur vorherigen Einheit: ${delta} Wiederholungen bei praktisch gleichem Gewicht. Tagesform und Erholung können die Leistung beeinflussen.`;
+   else trend='Vergleich zur vorherigen Einheit: gleiche Gesamtzahl an Wiederholungen bei praktisch gleichem Gewicht.';
+  }
+ }
+ const date=last.date?new Date(last.date).toLocaleDateString('de-DE'):'letzte Einheit';
+ return `<div class="notice" style="margin:8px 0"><b>Progressions-Tipp für die nächste Einheit</b><div style="margin-top:4px">${esc(advice)}</div>${trend?`<div class="mini" style="margin-top:5px">${esc(trend)}</div>`:''}<div class="mini" style="margin-top:5px">Grundlage: ${sets.length} dokumentierte Sätze vom ${date}. Vorschlag, keine automatische Anpassung.</div></div>`;
+}
+
+function updateSetField(id,ei,si,field,value){let s=sessionById(id),set=s?.exerciseItems?.[ei]?.sets?.[si];if(!set||set.completed)return;if(field==='weightKg'){set.weightKg=value===''?null:Number(value);if(set.weightKg!==null&&(!Number.isFinite(set.weightKg)||set.weightKg<0))return alert('Bitte ein gültiges Gewicht ab 0 kg eintragen.');}if(field==='reps'){set.reps=value===''?null:Number(value);if(set.reps!==null&&(!Number.isInteger(set.reps)||set.reps<1))return alert('Wiederholungen müssen eine positive ganze Zahl sein.');}persist();}
+function finishSet(id,ei,si){let s=sessionById(id),set=s?.exerciseItems?.[ei]?.sets?.[si];if(!set||set.completed)return;if(!Number.isInteger(Number(set.reps))||Number(set.reps)<1)return alert('Bitte zuerst die Wiederholungen eintragen.');if(set.weightKg!==null&&(!Number.isFinite(Number(set.weightKg))||Number(set.weightKg)<0))return alert('Bitte das Gewicht prüfen.');set.completed=true;set.completedAt=Date.now();let e=s.exerciseItems[ei];s.restTimer={durationSeconds:e.restSeconds||90,endsAt:Date.now()+(e.restSeconds||90)*1000,remainingSecondsAtPause:null,isPaused:false};markExerciseRecent(e.exerciseId);persist();renderActiveWorkout();}
+function addWorkoutSet(id,ei){let s=sessionById(id),e=s?.exerciseItems?.[ei];if(!e||s.status!=='active')return;let n=e.sets.length+1;e.sets.push({id:s.id+'_e'+ei+'_s'+Date.now(),setNo:n,weightKg:null,reps:null,completed:false,completedAt:null});persist();renderActiveWorkout();}
+function renderTimerHtml(s){let t=s.restTimer;if(!t)return '<p class="notice">Pausentimer startet nach Abschluss eines Satzes.</p>';let remain=t.isPaused?Math.max(0,t.remainingSecondsAtPause||0):Math.max(0,Math.ceil((t.endsAt-Date.now())/1000));return `<div class="exercise-detail"><div class="mini">PAUSENTIMER</div><div class="timer" id="restTimerValue">${Math.floor(remain/60).toString().padStart(2,'0')}:${(remain%60).toString().padStart(2,'0')}</div><div class="grid"><button class="btn secondary" onclick="extendRestTimer('${s.id}',15)">+15 Sek.</button><button class="btn secondary" onclick="skipRestTimer('${s.id}')">Überspringen</button></div></div>`;}
+function startTimerTicker(s){if(restInterval)clearInterval(restInterval);if(s.status==='paused')return;restInterval=setInterval(()=>{let elapsed=document.getElementById('workoutElapsed');if(elapsed)elapsed.textContent=formatWorkoutTime(s);let t=s.restTimer;if(!t||t.isPaused)return;let r=Math.max(0,Math.ceil((t.endsAt-Date.now())/1000)),el=document.getElementById('restTimerValue');if(el)el.textContent=Math.floor(r/60).toString().padStart(2,'0')+':'+(r%60).toString().padStart(2,'0');if(r===0){s.restTimer=null;let box=document.getElementById('restTimerBox');if(box)box.innerHTML=renderTimerHtml(s);}},500);}
+function extendRestTimer(id,sec){let s=sessionById(id);if(!s?.restTimer)return;let t=s.restTimer;t.endsAt=(t.isPaused?Date.now()+(t.remainingSecondsAtPause||0)*1000:t.endsAt)+sec*1000;if(t.isPaused)t.remainingSecondsAtPause+=sec;persist();renderActiveWorkout();}
+function skipRestTimer(id){let s=sessionById(id);if(s)s.restTimer=null;persist();renderActiveWorkout();}
+function pauseWorkout(id){let s=sessionById(id);if(!s||s.status!=='active')return;let now=Date.now();s.status='paused';s.pausedAt=now;if(s.restTimer&&!s.restTimer.isPaused){s.restTimer.remainingSecondsAtPause=Math.max(0,Math.ceil((s.restTimer.endsAt-now)/1000));s.restTimer.isPaused=true;}s.activeElapsedMs=(s.activeElapsedMs||0)+(now-(s.resumedAt||s.startedAt||now));persist();if(restInterval)clearInterval(restInterval);renderActiveWorkout();}
+function resumeWorkout(id){let s=sessionById(id);if(!s||s.status!=='paused')return;s.status='active';s.resumedAt=Date.now();s.pausedAt=null;if(s.restTimer?.isPaused){s.restTimer.endsAt=Date.now()+(s.restTimer.remainingSecondsAtPause||0)*1000;s.restTimer.isPaused=false;}persist();renderActiveWorkout();}
+function finishWorkout(id){let s=sessionById(id);if(!s)return;let done=s.exerciseItems.reduce((a,e)=>a+e.sets.filter(x=>x.completed).length,0),total=s.exerciseItems.reduce((a,e)=>a+e.sets.length,0);if(done===0)return alert('Bitte mindestens einen Satz abschließen. Wenn du nicht trainiert hast, nutze „Training abbrechen“.');if(!confirm(`Training abschließen? ${done} von ${total} Sätzen sind erledigt.`))return;if(s.status==='active')s.activeElapsedMs=(s.activeElapsedMs||0)+(Date.now()-(s.resumedAt||s.startedAt||Date.now()));s.status='completed';s.completedAt=Date.now();s.restTimer=null;let reps=s.exerciseItems.reduce((a,e)=>a+e.sets.filter(x=>x.completed).reduce((b,x)=>b+(Number(x.reps)||0),0),0),volume=s.exerciseItems.reduce((a,e)=>a+e.sets.filter(x=>x.completed&&x.weightKg!==null&&Number.isFinite(Number(x.weightKg))).reduce((b,x)=>b+Number(x.weightKg)*(Number(x.reps)||0),0),0),mins=Math.round((s.activeElapsedMs||0)/60000);persist();if(restInterval)clearInterval(restInterval);document.getElementById('activeWorkoutCard').style.display='none';activeSessionId=null;alert(`Training abgeschlossen!\\n${done}/${total} Sätze · ${reps} Wiederholungen · ${mins} aktive Minuten · dokumentiertes externes Lastvolumen: ${Math.round(volume)} kg`);render();}
+function abandonWorkout(id){let s=sessionById(id);if(!s||!confirm('Training wirklich abbrechen? Bereits abgeschlossene Sätze bleiben gespeichert. Der Trainingstag bleibt reserviert.'))return;s.status='abandoned';s.abandonedAt=Date.now();s.restTimer=null;persist();if(restInterval)clearInterval(restInterval);document.getElementById('activeWorkoutCard').style.display='none';activeSessionId=null;render();}
+function updateRecentTrainingCards(){let root=document.getElementById('weekHistory');let list=data.sessions.slice().sort((a,b)=>b.ts-a.ts).slice(0,12);root.innerHTML=list.map(s=>`<div class="item"><span class="grow">${new Date(s.ts).toLocaleDateString('de-DE')} · ${esc(s.type)}<div class="mini">${s.status==='completed'?'Abgeschlossen':s.status==='active'?'Läuft':s.status==='paused'?'Pausiert':s.status==='planned'?'Geplant':s.status==='abandoned'?'Abgebrochen':'Historischer Eintrag'}</div></span>${['planned','active','paused'].includes(s.status)?`<button class="btn secondary" onclick="${s.status==='planned'?`startWorkout('${s.id}')`:`showSessionWorkout('${s.id}')`}">${s.status==='planned'?'Starten':'Öffnen'}</button>`:''}<button class="btn ghost" aria-label="Trainingstag löschen" onclick="deleteSessionById('${esc(s.id)}')">Löschen</button></div>`).join('')||'<p class="notice">Noch keine Einheiten gespeichert.</p>'; }
+function showSessionWorkout(id){let s=sessionById(id);if(!s)return;activeSessionId=id;document.getElementById('activeWorkoutCard').style.display='block';renderActiveWorkout();document.getElementById('activeWorkoutCard').scrollIntoView({behavior:'smooth',block:'start'});}
+function exerciseSearch(){let q=document.getElementById('exerciseQuery').value.trim();if(!q)return alert('Bitte eine Muskelgruppe oder Übung eingeben.');window.open('https://www.google.com/search?q='+encodeURIComponent(q+' exercises technique muscle groups'),'_blank')}
+const pantry=['Skyr','Naturjoghurt','Magerquark','Eier','Haferflocken','Whey-Protein','Bananen','Beeren','Hüttenkäse','Brot','Reis','Hähnchen','Thunfisch','Paprika','Brokkoli','Nudeln'];
+function setupPantry(){document.getElementById('ingredientChecks').innerHTML=pantry.map(x=>`<label class="item" style="font-size:12px"><input type="checkbox" value="${x}"> ${x}</label>`).join('')}
+async function makeRecipe(){const q=document.getElementById('recipePrompt').value.trim();if(!q)return alert('Beschreibe kurz dein Wunschgericht.');if(!aiConsentGiven())return alert('Bitte aktiviere zuerst die Einwilligung in der KI-Verbindung.');const root=document.getElementById('recipeResult');root.innerHTML='<p class="notice">KI erstellt dein Rezept …</p>';try{const r=await callGlowAI('recipe',{prompt:q,servings:1,recipeCount:1,pantry:(data.pantryItems||[]).slice(0,40)});const recipe=Array.isArray(r.recipes)&&r.recipes.length===1?r.recipes[0]:r;if(Array.isArray(r.recipes)&&r.recipes.length!==1)throw new Error('Die KI hat nicht genau ein Rezept geliefert.');showRecipe(normalizeAIRecipe(recipe),'recipeResult')}catch(e){root.innerHTML=`<p class="notice">Rezept konnte nicht erstellt werden: ${esc(e.message)}</p>`}}
+function showRecipe(r,target){
+ window.lastRecipe=r;
+ const known=r.ingredients.filter(x=>Number.isFinite(Number(x.price))&&Number(x.price)>0);
+ const unknown=r.ingredients.length-known.length;
+ const total=known.reduce((a,x)=>a+Number(x.price),0);
+ const costText=known.length?`Bekannte Preisanteile: ${total.toFixed(2).replace('.',',')} €${unknown?` · ${unknown} Zutaten ohne Preis`:''}`:'Preis nicht kalkulierbar – es fehlen Preisangaben.';
+ document.getElementById(target).innerHTML=`<div class="card" style="margin-top:12px"><h4>${esc(r.name)}</h4><div class="muted">${r.servings} Portion · ca. ${r.kcal==null?'—':r.kcal} kcal · ${r.protein==null?'—':r.protein+' g'} Protein (KI-Orientierungswerte)</div><h4 style="margin-top:12px">Zutaten</h4>${r.ingredients.map(x=>{let knownPrice=Number.isFinite(Number(x.price))&&Number(x.price)>0;return `<div class="item"><span class="grow">${esc(x.n)}<div class="muted">${esc(x.need||'Menge nach Bedarf')} · kaufen: ${esc(x.buy||'bei Bedarf')}</div></span><span class="right">${knownPrice?Number(x.price).toFixed(2).replace('.',',')+' €':'Preis offen'}</span></div>`}).join('')}<div class="row"><b>${known.length?'Bekannte Preisanteile':'Geschätzter Einkauf'}</b><b>${costText}</b></div><h4 style="margin-top:12px">Zubereitung</h4><ol>${r.steps.map(s=>`<li class="notice">${esc(s)}</li>`).join('')}</ol><button class="btn secondary" onclick="saveRecipe()">Rezept speichern</button> <button class="btn" onclick="addRecipeToShop()">Zum Einkauf hinzufügen</button></div>`;
+}
+async function recipesFromPantry(){const chosen=[...document.querySelectorAll('#ingredientChecks input:checked')].map(x=>x.value);if(!chosen.length)return alert('Wähle mindestens eine Zutat aus.');if(!aiConsentGiven())return alert('Bitte aktiviere zuerst die Einwilligung in der KI-Verbindung.');const count=Number(document.getElementById('recipeCount').value),kind=document.getElementById('mealKind').value,root=document.getElementById('pantryResults');root.innerHTML='<p class="notice">KI erstellt Rezepte aus deinen Zutaten …</p>';try{const r=await callGlowAI('recipe',{prompt:`Erstelle ${count} unterschiedliche ${kind}-Rezepte. Verwende vorrangig: ${chosen.join(', ')}. Fehlende Zutaten als Einkauf markieren. Gib mehrere Rezepte im Feld recipes zurück.`,servings:1,recipeCount:count,pantry:chosen});const recipes=Array.isArray(r.recipes)?r.recipes:[r];if(recipes.length!==count)throw new Error(`Die KI hat ${recipes.length} statt ${count} Rezepten geliefert.`);root.innerHTML='';recipes.forEach((item,i)=>{const id='pantryRecipeAI'+i,d=document.createElement('div');d.id=id;root.appendChild(d);showRecipe(normalizeAIRecipe(item),id)})}catch(e){root.innerHTML=`<p class="notice">Rezepte konnten nicht erstellt werden: ${esc(e.message)}</p>`}}
+function saveRecipe(){
+ if(!window.lastRecipe)return;
+ const r=JSON.parse(JSON.stringify(window.lastRecipe));
+ const signature=x=>String(x.name||'').trim().toLowerCase()+'|'+(x.ingredients||[]).map(i=>String(i.n||'').trim().toLowerCase()).sort().join('|');
+ if(data.savedRecipes.some(x=>signature(x)===signature(r)))return alert('Dieses Rezept ist bereits gespeichert.');
+ data.savedRecipes.push(r);save();alert('Rezept gespeichert!');
+}
+function addRecipeToShop(){
+ if(!window.lastRecipe)return;
+ let added=0;
+ window.lastRecipe.ingredients.forEach(x=>{
+  const name=String(x.n||'').trim();if(!name)return;
+  let found=data.shop.find(s=>String(s.name||'').trim().toLowerCase()===name.toLowerCase());
+  const price=Number(x.price)>0?Number(x.price):null;
+  if(found){
+   found.count=(found.count||1)+1;
+   if((found.price===null||found.price===undefined||Number(found.price)<=0)&&price!==null)found.price=price;
+  }else{
+   data.shop.push({name,amount:x.buy||x.need||'Menge offen',price,count:1,checked:false});
+  }
+  added++;
+ });
+ save();showTab('shop');alert(`${added} Zutaten wurden zur Einkaufsliste übernommen. Fehlende Preise bleiben offen.`);
+}
+function addShop(){
+ let n=prompt('Artikel?');if(!n)return;
+ let amount=prompt('Kaufmenge / Packungsgröße?','1 Packung');if(amount===null)return;
+ let raw=prompt('Preis in Euro (leer lassen, wenn unbekannt):','');
+ let price=raw&&raw.trim()?Number(raw.replace(',','.')):null;
+ if(price!==null&&(!Number.isFinite(price)||price<0))return alert('Bitte einen gültigen Preis ab 0 € eingeben oder leer lassen.');
+ data.shop.push({name:n.trim(),amount,price,checked:false,count:1});save();
+}
+function clearShop(){if(confirm('Einkaufsliste wirklich leeren?')){data.shop=[];save()}}
+function resetMeals(){if(confirm('Nur Mahlzeiten von heute löschen? Frühere Tage bleiben erhalten.')){data.meals=data.meals.filter(m=>m.date!==today());save()}}
+
+const muscleTerms = [
+ ['Brust',['brust','pector','chest']],
+ ['Rücken',['rücken','rucken','latissimus','trapez','rhomboid','back']],
+ ['Schultern',['schulter','deltoid','shoulder']],
+ ['Bizeps',['bizeps','biceps']],
+ ['Trizeps',['trizeps','triceps']],
+ ['Unterarme',['unterarm','forearm','handgelenk']],
+ ['Bauch & Core',['bauch','core','abs','oblique','rumpf']],
+ ['Quadrizeps',['quadrizeps','quadriceps','oberschenkelvorder','quads']],
+ ['Beinbeuger',['beinbeuger','hamstring','oberschenkelrück','oberschenkelruck']],
+ ['Gesäß',['gesäß','gesass','glute']],
+ ['Waden',['wade','calf','soleus']]
+];
+function textMuscles(value){
+ let t=String(value||'').toLowerCase(), found=[];
+ muscleTerms.forEach(([name,terms])=>{if(terms.some(k=>t.includes(k)))found.push(name)});
+ return found;
+}
+function completedWorkoutSessions(){
+ return (data.sessions||[]).filter(s=>s&&s.status==='completed'&&Array.isArray(s.exerciseItems));
+}
+function analyticsDate(s){return Number(s.completedAt||s.ts||s.startedAt||0)}
+function renderProgressAnalytics(){
+ const rangeEl=document.getElementById('progressRange');
+ if(!rangeEl)return;
+ const days=rangeEl.value==='all'?null:Number(rangeEl.value);
+ const cutoff=days?Date.now()-days*86400000:0;
+ const sessions=completedWorkoutSessions().filter(s=>analyticsDate(s)>=cutoff);
+ let sets=0,reps=0,volume=0,volumeSets=0;
+ const prs=new Map(),muscles=new Map(),weekly=new Map();
+ sessions.forEach(s=>{
+  const stamp=analyticsDate(s),weekStart=new Date(stamp);
+  weekStart.setHours(0,0,0,0);weekStart.setDate(weekStart.getDate()-(weekStart.getDay()+6)%7);
+  const weekKey=weekStart.getFullYear()+'-'+String(weekStart.getMonth()+1).padStart(2,'0')+'-'+String(weekStart.getDate()).padStart(2,'0');
+  (s.exerciseItems||[]).forEach(e=>{
+   const done=(e.sets||[]).filter(x=>x&&x.completed);
+   if(!done.length)return;
+   const main=textMuscles(e.primaryMuscles||e.hauptmuskeln||e.group||'');
+   const secondary=textMuscles(e.secondaryMuscles||e.hilfsmuskeln||'');
+   done.forEach(set=>{
+    sets++;reps+=Number(set.reps)||0;
+    const kg=Number(set.weightKg),repCount=Number(set.reps)||0;
+    if(set.weightKg!==null&&set.weightKg!==''&&Number.isFinite(kg)&&kg>0){
+     const setVolume=kg*repCount;volume+=setVolume;volumeSets++;
+     weekly.set(weekKey,(weekly.get(weekKey)||0)+setVolume);
+    }
+    main.forEach(m=>{let v=muscles.get(m)||{main:0,secondary:0};v.main++;muscles.set(m,v)});
+    secondary.filter(m=>!main.includes(m)).forEach(m=>{let v=muscles.get(m)||{main:0,secondary:0};v.secondary++;muscles.set(m,v)});
+    const key=String(e.exerciseId||e.nameSnapshot||'Unbekannte Übung');
+    let pr=prs.get(key);
+    if(!pr)pr={name:e.nameSnapshot||key,maxWeight:null,maxReps:0,sets:0,topWeightReps:0};
+    pr.sets++;pr.maxReps=Math.max(pr.maxReps,repCount);
+    if(set.weightKg!==null&&set.weightKg!==''&&Number.isFinite(kg)&&kg>0){
+     if(pr.maxWeight===null||kg>pr.maxWeight){pr.maxWeight=kg;pr.topWeightReps=repCount}
+    }
+    prs.set(key,pr);
+   });
+  });
+ });
+ const stat=(label,value)=>`<div class="stat"><span>${label}</span><b>${value}</b></div>`;
+ document.getElementById('trainingStats').innerHTML=
+  stat('Abgeschlossene Einheiten',sessions.length)+stat('Arbeitssätze',sets)+
+  stat('Wiederholungen',reps.toLocaleString('de-DE'))+
+  stat('Dokumentiertes Lastvolumen',volumeSets?Math.round(volume).toLocaleString('de-DE')+' kg':'—');
+ const weeklyRows=[...weekly.entries()].sort((a,b)=>a[0].localeCompare(b[0])).slice(-8);
+ const weeklyEl=document.getElementById('weeklyVolumeChart');
+ if(weeklyEl)weeklyEl.innerHTML=weeklyRows.length?
+  weeklyRows.map(([d,v])=>`<div class="volume-row"><span class="mini">${new Date(d+'T12:00:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}</span><div class="progress"><i style="width:${Math.max(3,v/Math.max(...weeklyRows.map(x=>x[1]))*100)}%"></i></div><b>${Math.round(v).toLocaleString('de-DE')} kg</b></div>`).join(''):
+  '<p class="notice">Noch kein Lastvolumen dokumentiert. Es zählen nur Sätze mit eingetragenem externem Gewicht und Wiederholungen; Körpergewicht und Bänder werden nicht geschätzt.</p>';
+ const byDay=new Map();
+ sessions.forEach(s=>{let key=dateKey(analyticsDate(s)),v=byDay.get(key)||0;(s.exerciseItems||[]).forEach(e=>(e.sets||[]).forEach(x=>{if(x.completed)v++}));byDay.set(key,v)});
+ const daysSorted=[...byDay.entries()].sort((a,b)=>a[0].localeCompare(b[0])).slice(-14);
+ document.getElementById('trainingLoadChart').innerHTML=daysSorted.length?
+  daysSorted.map(([d,v])=>`<div class="volume-row"><span class="mini">${new Date(d+'T12:00:00').toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}</span><div class="progress"><i style="width:${Math.max(3,v/Math.max(...daysSorted.map(x=>x[1]))*100)}%"></i></div><b>${v} Sätze</b></div>`).join(''):
+  '<p class="notice">In diesem Zeitraum gibt es noch keine abgeschlossenen Trainingseinheiten.</p>';
+ const recordRows=[...prs.values()].sort((a,b)=>(b.maxWeight||0)-(a.maxWeight||0)||b.maxReps-a.maxReps);
+ document.getElementById('personalRecords').innerHTML=recordRows.length?
+  recordRows.sort((a,b)=>a.name.localeCompare(b.name,'de')).map(p=>`<div class="item"><span class="grow"><b>${esc(p.name)}</b><div class="muted">${p.sets} abgeschlossene Sätze · höchste Wiederholungszahl ${p.maxReps}</div></span><span class="right">${p.maxWeight===null?'Last nicht dokumentiert':p.maxWeight.toLocaleString('de-DE')+' kg × '+p.topWeightReps}</span></div>`).join(''):
+  '<p class="notice">Noch keine Bestleistungen vorhanden. Protokolliere Sätze und schließe ein Training ab.</p>';
+ const muscleRows=[...muscles.entries()].sort((a,b)=>(b[1].main+b[1].secondary)-(a[1].main+a[1].secondary));
+ const maxMuscle=Math.max(1,...muscleRows.map(x=>x[1].main+x[1].secondary));
+ document.getElementById('muscleAnalytics').innerHTML=muscleRows.length?
+  muscleRows.map(([m,v])=>`<div class="muscle-row"><div class="row"><b>${esc(m)}</b><span class="pill">${v.main+v.secondary} Sätze</span></div><div class="progress"><i style="width:${(v.main+v.secondary)/maxMuscle*100}%"></i></div><div class="muted">${v.main} Hauptmuskel-Sätze · ${v.secondary} Hilfsmuskel-Sätze</div></div>`).join(''):
+  '<p class="notice">Noch keine Muskelgruppen-Daten. Übungszuordnungen erscheinen nach abgeschlossenen Workouts.</p>';
+}
+
+function backupSnapshot(){
+ return GlowUpCore.createBackupSnapshot(data,{storageKey:KEY,pendingMeal:pendingMealRecovery});
+}
+function exportBackup(){
+ if(profileRecovery){alert('Das gespeicherte Profil ist beschädigt. Lade zuerst die Originaldaten über den Wiederherstellungshinweis herunter oder stelle ein geprüftes Backup wieder her.');return false;}
+ try{
+  const payload=backupSnapshot();
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='glow-up-2026-backup-'+today()+'.json';
+  document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  const status=document.getElementById('backupStatus');
+  if(status)status.textContent=pendingMealRecovery?'Backup wurde erstellt und enthält auch die noch nicht gespeicherte Mahlzeit. Bewahre die JSON-Datei an einem sicheren Ort auf.':'Backup wurde erstellt. Bewahre die JSON-Datei an einem sicheren Ort auf.';
+ }catch(e){alert('Backup konnte nicht erstellt werden. Bitte versuche es erneut.');}
+}
+function validateBackupPayload(payload){
+ if(!payload||typeof payload!=='object'||payload.format!=='glowup2026-backup'||payload.schemaVersion!==1||!payload.data||typeof payload.data!=='object'||Array.isArray(payload.data))return 'Datei ist kein unterstütztes GLOW-UP-Backup.';
+ const d=payload.data;
+ const arrays=['sessions','meals','mealHistory','checks','savedRecipes','shop','pantryItems','activities'];
+ for(const key of arrays)if(d[key]!==undefined&&!Array.isArray(d[key]))return `Backup ungültig: "${key}" muss eine Liste sein.`;
+ if(d.waterDays!==undefined&&(typeof d.waterDays!=='object'||d.waterDays===null||Array.isArray(d.waterDays)))return 'Backup ungültig: Wasserprotokoll hat ein falsches Format.';
+ if(d.trainingDaySlots!==undefined&&(typeof d.trainingDaySlots!=='object'||d.trainingDaySlots===null||Array.isArray(d.trainingDaySlots)))return 'Backup ungültig: Trainingsreservierungen haben ein falsches Format.';
+ if(d.nutritionGoals!==undefined&&(typeof d.nutritionGoals!=='object'||d.nutritionGoals===null||Array.isArray(d.nutritionGoals)))return 'Backup ungültig: Ernährungsziele haben ein falsches Format.';
+ if(d.exerciseLibraryPrefs!==undefined&&(typeof d.exerciseLibraryPrefs!=='object'||d.exerciseLibraryPrefs===null||Array.isArray(d.exerciseLibraryPrefs)))return 'Backup ungültig: Übungseinstellungen haben ein falsches Format.';
+ return null;
+}
+function importBackupFile(input){
+ const file=input.files&&input.files[0];if(!file)return;
+ if(file.size>15*1024*1024){alert('Die Backup-Datei ist größer als 15 MB und wird nicht importiert.');input.value='';return;}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const payload=JSON.parse(String(reader.result||''));
+   const problem=validateBackupPayload(payload);
+   if(problem){alert(problem);return;}
+   const oldCounts={sessions:data.sessions.length,meals:data.meals.length,checks:data.checks.length};
+   const incoming={...defaults,...payload.data};
+   incoming.exerciseLibraryPrefs={favoriteIds:[],recent:[],customExercises:[],...(payload.data.exerciseLibraryPrefs||{})};
+   const counts={sessions:(incoming.sessions||[]).length,meals:(incoming.meals||[]).length,checks:(incoming.checks||[]).length};
+   const recoveryWarning=profileRecovery?'\\n\\nDas aktuelle Profil ist beschädigt. Ein Wiederherstellen ersetzt die unlesbaren Daten. Lade vorher die Originaldaten herunter, wenn du sie behalten möchtest.':'';
+   const previousSummary=profileRecovery?'Bisher: Profil nicht lesbar.':`Bisher: ${oldCounts.sessions} Trainingseinträge, ${oldCounts.meals} Mahlzeiten, ${oldCounts.checks} Check-ins.`;
+   const message=`Backup vom ${payload.createdAt||'unbekannten Datum'} wiederherstellen?\\n\\n${previousSummary}\\nBackup: ${counts.sessions} Trainingseinträge, ${counts.meals} Mahlzeiten, ${counts.checks} Check-ins.\\n\\nDer aktuelle lokale Datenstand wird durch den Backup-Stand ersetzt. Exportiere vorher ein Backup, wenn du beides behalten möchtest.${recoveryWarning}`;
+   if(!confirm(message))return;
+   const write=GlowUpCore.writeProfile(localStorage,KEY,incoming);
+   if(!write.ok){profileWriteError=write.error||null;if(!profileRecovery)profileUnsaved=true;updateStorageAlert();alert('Wiederherstellung fehlgeschlagen. Die vorhandenen Daten wurden nicht absichtlich überschrieben.');return;}
+   data=incoming;
+   if(pendingMealRecovery&&Array.isArray(incoming.meals)&&incoming.meals.some(meal=>meal?.id===pendingMealRecovery.id))pendingMealRecovery=null;
+   profileRecovery=false;profileUnsaved=!!pendingMealRecovery;profileRaw=null;profileWriteError=null;updateStorageAlert();
+   const status=document.getElementById('backupStatus');if(status)status.textContent='Backup erfolgreich wiederhergestellt.';
+   render();renderProgressAnalytics();alert('Backup erfolgreich wiederhergestellt. Die App wird mit den gesicherten Daten aktualisiert.');
+  }catch(e){alert('Die Datei konnte nicht gelesen werden. Bitte verwende eine unveränderte GLOW-UP-Backup-JSON-Datei.');}
+  finally{input.value='';}
+ };
+ reader.onerror=()=>{alert('Die Backup-Datei konnte nicht gelesen werden.');input.value='';};
+ reader.readAsText(file);
+}
+
+function drawChart(){let c=document.getElementById('chart'),ctx=c.getContext('2d'),a=data.checks.slice().sort((x,y)=>(x.ts||Date.parse(x.d?.split('.').reverse().join('-'))||0)-(y.ts||Date.parse(y.d?.split('.').reverse().join('-'))||0));let summary=document.getElementById('weightTrendSummary');if(summary){if(a.length>=2){let first=a[0],last=a[a.length-1],delta=Number(last.w)-Number(first.w),sign=delta>0?'+':'';summary.textContent=`${first.w} kg → ${last.w} kg · Veränderung ${sign}${delta.toFixed(1).replace('.',',')} kg seit ${first.d||'erstem Check-in'}.`; }else summary.textContent='Mindestens zwei Check-ins sind nötig, um eine Veränderung zu berechnen.';}ctx.clearRect(0,0,c.width,c.height);ctx.strokeStyle='#393c50';ctx.beginPath();ctx.moveTo(30,15);ctx.lineTo(30,165);ctx.lineTo(580,165);ctx.stroke();if(!a.length){ctx.fillStyle='#999';ctx.fillText('Dein Gewichtsverlauf erscheint hier',50,90);return}let v=a.map(x=>x.w),mn=Math.min(...v)-1,mx=Math.max(...v)+1;ctx.strokeStyle='#a78bfa';ctx.lineWidth=4;ctx.beginPath();a.forEach((x,i)=>{let px=40+(a.length===1?0:i*520/(a.length-1)),py=155-(x.w-mn)/(mx-mn||1)*120;i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.stroke();a.forEach((x,i)=>{let px=40+(a.length===1?0:i*520/(a.length-1)),py=155-(x.w-mn)/(mx-mn||1)*120;ctx.fillStyle='#75d6e8';ctx.beginPath();ctx.arc(px,py,5,0,7);ctx.fill()})}
+function nutritionDisplay(value,unit){if(value===null||value===undefined||value==='')return unit==='kcal'?'Kalorien offen':'Protein offen';const n=Number(value);if(!Number.isFinite(n)||n<0)return unit==='kcal'?'Kalorien offen':'Protein offen';return `${n.toLocaleString('de-DE')} ${unit}`}
+function render(){
+ const todaysMeals=data.meals.filter(m=>m.date===today()),totals=GlowUpCore.nutrientTotals(todaysMeals),units=cycleSessions().length;
+ const last=data.checks.slice().sort((a,b)=>(b.ts||0)-(a.ts||0))[0]||data.checks.at(-1),w=waterValue();
+ const proteinText=totals.protein===null?(todaysMeals.length?'—':'0 g'):`${totals.protein.toLocaleString('de-DE')} g`;
+ const calorieText=totals.kcal===null?(todaysMeals.length?'—':'0'):totals.kcal.toLocaleString('de-DE');
+ document.getElementById('homeTrain').textContent=units;
+ document.getElementById('homeProtein').textContent=proteinText;
+ document.getElementById('homeWeight').textContent=last?last.w+' kg':'—';
+ document.getElementById('homeWater').textContent=w.toFixed(2).replace('.',',')+' l';
+ document.getElementById('waterHomeTotal').textContent=w.toFixed(2).replace('.',',')+' Liter';
+ document.getElementById('trainPct').textContent=units+' Einheiten';
+ document.getElementById('trainBar').style.width=Math.min(units/5*100,100)+'%';
+ document.getElementById('calTotal').textContent=calorieText;
+ document.getElementById('proteinTotal').textContent=proteinText;
+ document.getElementById('meals').innerHTML=todaysMeals.length?todaysMeals.map(m=>{
+  const source=m.estimate||m.estimateMethod==='ai'?'KI-Schätzung':m.estimateMethod==='manual'?'Manuell':'Eintrag';
+  return `<div class="item"><span class="grow">${esc(m.n)}<div class="muted">${nutritionDisplay(m.c,'kcal')} · ${nutritionDisplay(m.p,'g')} · ${source}</div></span><span class="right">${m.date||''}</span></div>`;
+ }).join(''):'<p class="notice">Noch keine Mahlzeiten heute.</p>';
+ document.getElementById('shopping').innerHTML=data.shop.length?data.shop.map((s,i)=>{let known=s.price!==null&&s.price!==undefined&&Number.isFinite(Number(s.price))&&Number(s.price)>0;return `<div class="item"><input type="checkbox" ${s.checked?'checked':''} onchange="data.shop[${i}].checked=this.checked;save()"><span class="grow" style="${s.checked?'text-decoration:line-through;opacity:.5':''}">${esc(s.name)}<div class="muted">${esc(s.amount||'')} ${s.count>1?'· '+s.count+' Packungen':''}</div></span><span class="right">${known?(Number(s.price)*(s.count||1)).toFixed(2).replace('.',',')+' €':'Preis offen'}</span></div>`}).join(''):'<p class="notice">Noch keine Produkte. Speichere ein Rezept und füge seine Zutaten hinzu.</p>';
+ const priced=data.shop.filter(s=>s.price!==null&&s.price!==undefined&&Number.isFinite(Number(s.price))&&Number(s.price)>0),unknownPrices=data.shop.length-priced.length;
+ document.getElementById('shopTotal').textContent=priced.reduce((a,s)=>a+Number(s.price)*(s.count||1),0).toFixed(2).replace('.',',')+' €'+(unknownPrices?` + ${unknownPrices} Preise offen`:'');
+ document.getElementById('savedRecipes').innerHTML=data.savedRecipes.length?data.savedRecipes.map((r,i)=>`<div class="item"><span class="grow"><b>${esc(r.name)}</b><div class="muted">${nutritionDisplay(r.kcal,'kcal')} · ${nutritionDisplay(r.protein,'g')}</div></span><button class="btn secondary" onclick="window.lastRecipe=data.savedRecipes[${i}];showRecipe(window.lastRecipe,'recipeResult');showTab('recipes')">Öffnen</button></div>`).join(''):'<p class="notice">Noch keine gespeicherten Rezepte.</p>';
+ document.getElementById('pantryInventory').innerHTML=data.pantryItems.length?data.pantryItems.map((x,i)=>`<div class="item"><span class="grow">${esc(x.name)}<div class="muted">${esc(x.amount)}</div></span><button class="btn secondary" onclick="removePantryItem(${i})">×</button></div>`).join(''):'<p class="notice">Noch keine Vorräte gespeichert.</p>';
+ document.getElementById('activityList').innerHTML=data.activities.filter(a=>a.date===today()).map(a=>`<div class="item"><span class="grow">${esc(a.text)}<div class="muted">${a.steps?a.steps.toLocaleString('de-DE')+' Schritte · ':''}${a.minutes?a.minutes+' Min. · ':''}${a.kcal!==null&&a.kcal!==undefined?a.kcal+' kcal':''}</div></span></div>`).join('')||'<p class="notice">Heute noch keine zusätzlichen Aktivitäten eingetragen.</p>';
+ document.getElementById('lastWeight').textContent=last?last.w+' kg':'—';document.getElementById('lastWaist').textContent=last?last.z+' cm':'—';
+ document.getElementById('history').textContent=data.checks.map(x=>`${x.d}: ${x.w} kg · ${x.z} cm`).join(' · ')||'Noch keine Check-ins.';
+ document.getElementById('weekSelect').value=data.week;document.getElementById('challenge').style.display=data.challengeVisible?'block':'none';
+ document.getElementById('challengeBar').style.width=(data.week/8*100)+'%';document.getElementById('challengeLabel').textContent=`Woche ${data.week} von 8`;
+ updateRecentTrainingCards();renderTrainingBalance();
+ if(!activeSessionId){const pending=data.sessions.filter(x=>['active','paused'].includes(x.status)).sort((a,b)=>b.ts-a.ts)[0];if(pending)activeSessionId=pending.id;}
+ if(activeSessionId&&sessionById(activeSessionId)&&['active','paused'].includes(sessionById(activeSessionId).status))renderActiveWorkout();
+ else document.getElementById('activeWorkoutCard').style.display='none';
+ renderNutritionAnalytics();updateStorageAlert();
+}
+
+function deleteSessionById(id){const s=sessionById(id);if(!s)return;if(!confirm('Diesen Trainingstag wirklich löschen? Die dokumentierten Sätze und zugehörigen Trainingsauswertungen werden entfernt. Die Tagesbegrenzung bleibt bis Mitternacht bestehen.'))return;if(['active','paused'].includes(s.status)){if(restInterval)clearInterval(restInterval);if(activeSessionId===id)activeSessionId=null;}data.sessions=data.sessions.filter(x=>x.id!==id);save();}
+function deleteSession(i){if(!confirm('Diesen Trainingstag wirklich aus der Trainingswoche entfernen? Die Tagesbegrenzung bleibt bis Mitternacht bestehen.'))return;data.sessions.splice(i,1);save()}
+function addPantryItem(){let n=document.getElementById('pantryName').value.trim(),a=document.getElementById('pantryAmount').value.trim();if(!n||!a)return alert('Bitte Lebensmittel und Menge angeben.');data.pantryItems.push({name:n,amount:a});document.getElementById('pantryName').value='';document.getElementById('pantryAmount').value='';save()}
+function removePantryItem(i){data.pantryItems.splice(i,1);save()}
+function addActivity(){let el=document.getElementById('activityText'),v=el.value.trim();if(!v)return;let low=v.toLowerCase(),steps=(v.match(/([\d.]+)\s*schritte?/i)||[])[1],mins=(v.match(/([\d.]+)\s*(?:minuten|min)\b/i)||[])[1],kcal=(v.match(/([\d.]+)\s*kcal/i)||[])[1];data.activities.push({text:v,date:today(),steps:steps?Number(steps.replace('.','')):0,minutes:mins?Number(mins):0,kcal:kcal?Number(kcal):null});el.value='';save()}
+const aiCfg=getAIConfig();document.getElementById('aiEndpoint').value=aiCfg.endpoint||'';document.getElementById('aiConsent').checked=!!aiCfg.consent;document.getElementById('aiStatus').textContent=aiCfg.endpoint?(aiCfg.consent?'KI-URL gespeichert, Einwilligung aktiv.':'KI-URL gespeichert, Einwilligung fehlt.'):'Noch nicht verbunden.';
+setupPantry();render();renderProgressAnalytics();loadExerciseLibrary();if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+try{renderAIUsage()}catch(e){}
+</script></body></html>

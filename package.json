@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test-worker.mjs && node test-app-core.mjs && node test-ai-client.mjs && node test-service-worker.mjs"
+  }
+}

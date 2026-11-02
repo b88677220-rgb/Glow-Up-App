@@ -1,0 +1,17 @@
+{
+  "name": "GLOW UP 2026 – Fitness App",
+  "short_name": "GLOW UP",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090a10",
+  "theme_color": "#090a10",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "description": "GLOW UP 2026 mit KI-Coach, KI-Ernährung, KI-Rezepten und geschütztem KI-Gateway."
+}

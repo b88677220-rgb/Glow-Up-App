@@ -1,0 +1,14 @@
+name = "glow-up-2026-ai"
+main = "index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Default is the cost-efficient GPT-6 Luna. Override only if desired and enabled for your API project.
+OPENAI_MODEL = "gpt-6-luna"
+DAILY_REQUEST_LIMIT = "30"
+MINUTE_REQUEST_LIMIT = "5"
+ALLOWED_ORIGIN = "https://b88677220-rgb.github.io"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "REPLACE_WITH_YOUR_CLOUDFLARE_KV_NAMESPACE_ID"
